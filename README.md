@@ -2,7 +2,7 @@
 
 **中文运动健康教练大模型评测集 · KeepaceAI Team**
 
-[English](README_EN.md) · [数据格式](SCHEMA.md) · [参评流程](SUBMISSION.md) · [评分说明](SCORING.md) · [CC BY 4.0](LICENSE)
+[English](docs/README_EN.md) · [数据格式](docs/SCHEMA.md) · [参评流程](docs/SUBMISSION.md) · [评分说明](docs/SCORING.md) · [CC BY 4.0](LICENSE)
 
 MoveBench 评估大模型在运动健康教练场景中的计划生成（PG）、数据分析（DA）和问答（QA）能力。首批公开 **140 道中文开放题、1,224 条逐题评分细则**，附参考答案、标准化 JSON/JSONL 和本地评测工具。
 
@@ -22,21 +22,33 @@ MoveBench 评估大模型在运动健康教练场景中的计划生成（PG）�
 - 论文中的 15 模型成绩来自完整题库，不能填入本批 140 题的榜单。当前公开版榜单从空榜开始。
 - Excel 中有 58 行题型标签为空或与结构化标注不同；原标签保存在 `release_metadata`，评分统一遵循结构化标注。
 
+## 文档与目录
+
+| 目录 | 内容 |
+|---|---|
+| [docs/](docs/) | 数据格式、评分方法、参评维护说明与英文文档 |
+| [data/](data/) | JSON/JSONL 数据、模型输入、提交模板与版本校验 |
+| [tools/](tools/) | 本地生成答案、三 Judge 评分、校验及发布工具 |
+
+[在线数据集与榜单](https://satosakula.github.io/MoveBench/) · [固定版本下载](https://github.com/SatoSakula/MoveBench/releases/tag/release-1)
+
+以下命令均在仓库根目录运行。
+
 ## 下载与加载
 
 | 文件 | 用途 |
 |---|---|
-| [test.jsonl](test.jsonl) | 每行一题，包含问题、Rubric、参考答案和元数据 |
-| [benchmark.json](benchmark.json) | 相同完整记录的 JSON 数组，兼容既有数据结构 |
-| [questions.json](questions.json) | 仅问题、ID、领域、题型；不含参考答案和 Rubric，供 Student 使用 |
-| [submission_template.json](submission_template.json) | 完整 140 题的提交模板；需要填写全部答案 |
-| [manifest.json](manifest.json) | 数据量、来源、版本和 SHA-256 校验 |
+| [test.jsonl](data/test.jsonl) | 每行一题，包含问题、Rubric、参考答案和元数据 |
+| [benchmark.json](data/benchmark.json) | 相同完整记录的 JSON 数组，兼容既有数据结构 |
+| [questions.json](data/questions.json) | 仅问题、ID、领域、题型；不含参考答案和 Rubric，供 Student 使用 |
+| [submission_template.json](data/submission_template.json) | 完整 140 题的提交模板；需要填写全部答案 |
+| [manifest.json](data/manifest.json) | 数据量、来源、版本和 SHA-256 校验 |
 
 ```python
 import json
 from pathlib import Path
 
-records = [json.loads(line) for line in Path('test.jsonl').read_text().splitlines()]
+records = [json.loads(line) for line in Path('data/test.jsonl').read_text().splitlines()]
 print(len(records))  # 140
 ```
 
@@ -44,7 +56,7 @@ print(len(records))  # 140
 
 ```python
 from datasets import load_dataset
-dataset = load_dataset('json', data_files={'test': 'test.jsonl'}, split='test')
+dataset = load_dataset('json', data_files={'test': 'data/test.jsonl'}, split='test')
 ```
 
 上述示例显式使用 `test` split。公开评测时请披露是否使用过本数据集或参考答案。
@@ -56,13 +68,13 @@ dataset = load_dataset('json', data_files={'test': 'test.jsonl'}, split='test')
 ```bash
 git clone https://github.com/SatoSakula/MoveBench.git
 cd MoveBench
-python3 validate.py
-python3 -m unittest -v
+python3 tools/validate.py
+python3 -m unittest discover -s tools -v
 
 export STUDENT_API_KEY='在本机设置，不要提交到 GitHub'
-python3 run_student.py --model organization/exact-model-version \
+python3 tools/run_student.py --model organization/exact-model-version \
   --base-url https://api.example.com/v1 --output predictions.json
-python3 validate.py --submission predictions.json
+python3 tools/validate.py --submission predictions.json
 ```
 
 支持 OpenAI-compatible Chat Completions 接口。使用本地权重、自定义程序或其他厂商协议，也可自行生成相同格式的 `predictions.json`。Student 不需要 Judge 凭据。
@@ -75,7 +87,7 @@ python3 validate.py --submission predictions.json
 
 目前采用 **提交答案文件 → 维护者运行 Judge → 审核上榜**，不是全天候自动评分服务，也不在公开 Issue、PR 或配置文件中接收 API Key。需要代跑 API 时，先通过 Issue 联系维护者确定接口和安全交付方式。
 
-三 Judge 固定权重为 Gemini 0.35、Claude 0.35、GPT 0.30；至少两名 Judge 判定明确红线时该题清零。具体公式、原始双 Judge 脚本与新协议的区别、失败处理见 [SCORING.md](SCORING.md)。
+三 Judge 固定权重为 Gemini 0.35、Claude 0.35、GPT 0.30；至少两名 Judge 判定明确红线时该题清零。具体公式、原始双 Judge 脚本与新协议的区别、失败处理见 [SCORING.md](docs/SCORING.md)。
 
 ## 适用范围
 
