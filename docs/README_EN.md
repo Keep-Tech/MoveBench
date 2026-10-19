@@ -1,6 +1,6 @@
 # MoveBench — Release 1
 
-[中文说明](README.md)
+[中文说明](../README.md)
 
 MoveBench evaluates large language models for sports and health coaching. This release contains **140 Chinese open-ended questions with 1,224 rubric criteria**, reference answers and metadata. Attribution: **KeepaceAI Team**. Maintained by [SatoSakula](https://github.com/SatoSakula).
 
@@ -21,12 +21,12 @@ This public subset is distinct from the paper's 809-question, 5,012-criterion be
 - `manifest.json`: dataset version, provenance, counts and SHA-256 hashes.
 
 ```bash
-python3 validate.py
-python3 -m unittest -v
+python3 tools/validate.py
+python3 -m unittest discover -s tools -v
 export STUDENT_API_KEY='set locally'
-python3 run_student.py --model organization/exact-version \
+python3 tools/run_student.py --model organization/exact-version \
   --base-url https://api.example.com/v1 --output predictions.json
-python3 validate.py --submission predictions.json
+python3 tools/validate.py --submission predictions.json
 ```
 
 Python 3.10+ is required. Runtime tools use the standard library and an OpenAI-compatible Chat Completions API; other inference implementations may produce the same submission schema directly.
