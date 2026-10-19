@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite this versioned dataset when using MoveBench Release 1."
+title: "MoveBench: Sports and Health Coaching Benchmark, Release 1"
+type: dataset
+authors:
+  - name: "KeepaceAI Team"
+version: "release-1"
+license: CC-BY-4.0
+repository-code: "https://github.com/SatoSakula/MoveBench"
+url: "https://github.com/SatoSakula/MoveBench"
+abstract: "140 Chinese open-ended sports and health coaching questions with 1224 rubric criteria. This is a public subset of the 809-question paper benchmark."

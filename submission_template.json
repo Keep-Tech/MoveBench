@@ -1,0 +1,574 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "release-1",
+  "dataset_sha256": "3d5a7ebcbbfeb5796bca2ec64f466a1cef34f15efc34942679972fd987325583",
+  "model_id": "organization/exact-model-version",
+  "generation": {
+    "date": "YYYY-MM-DD",
+    "temperature": 0,
+    "max_tokens": 4096,
+    "reasoning_mode": "specify if applicable"
+  },
+  "predictions": [
+    {
+      "problem_id": "DA_OQ011",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ224",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ229",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ239",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ244",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ257",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ268",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ270",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ297",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ298",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ313",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ317",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ327",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ329",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ343",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ348",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ353",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ446",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ460",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ474",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ486",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ502",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ022",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ023",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ023x",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ025",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ025x",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ558",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ605",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ117",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ125",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ132",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ136",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ151",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ164",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ171",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ191",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ199",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ214",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ216",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ217",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ29",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ38",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ40",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ43",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ47",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ51",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ67",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ73",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ75",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ77",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ82",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ88",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ220",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ230",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ231",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ238",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ256",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ265",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ274",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ281",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ294",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ301",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ332",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ335",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ340",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ345",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ351",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ433",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ434",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ435",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ468",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ490",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ497",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "DA_OQ503",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "PG_OQ619",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ001x",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ100",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ102",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ103",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ105",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ106",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ11",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ111",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ112",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ119",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ120",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ134",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ138",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ14",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ142",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ147",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ15",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ158",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ161",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ165",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ173",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ178",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ181",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ184",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ187",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ190",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ192",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ193",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ194",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ197",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ20",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ201",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ205",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ206",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ207",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ208",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ21",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ215",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ218",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ219",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ22",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ225",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ226",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ228",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ229",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ24",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ26",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ27",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ28",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ41",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ42",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ48",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ54",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ55",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ56",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ57",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ58",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ64",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ69",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ70",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ76",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ80",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ81",
+      "model_answer": ""
+    },
+    {
+      "problem_id": "QA_OQ84",
+      "model_answer": ""
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+.env.*
+!.env.example
+judge_config.json
+predictions*.json
+evidence*.json
+run_output/
+*.tmp
+.DS_Store

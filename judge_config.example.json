@@ -1,0 +1,30 @@
+{
+  "judges": [
+    {
+      "id": "gemini",
+      "display_name": "Gemini 3.1 Pro",
+      "weight": 0.35,
+      "model": "REPLACE_WITH_EXACT_PROVIDER_MODEL_ID",
+      "base_url": "https://api.example.com/v1",
+      "api_key_env": "JUDGE_GEMINI_API_KEY"
+    },
+    {
+      "id": "claude",
+      "display_name": "Claude 4.6 Sonnet",
+      "weight": 0.35,
+      "model": "REPLACE_WITH_EXACT_PROVIDER_MODEL_ID",
+      "base_url": "https://api.example.com/v1",
+      "api_key_env": "JUDGE_CLAUDE_API_KEY"
+    },
+    {
+      "id": "gpt",
+      "display_name": "GPT-5.2",
+      "weight": 0.3,
+      "model": "REPLACE_WITH_EXACT_PROVIDER_MODEL_ID",
+      "base_url": "https://api.example.com/v1",
+      "api_key_env": "JUDGE_GPT_API_KEY"
+    }
+  ],
+  "temperature": 0,
+  "max_tokens": 8192
+}
