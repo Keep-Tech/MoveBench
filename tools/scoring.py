@@ -5,15 +5,16 @@ import math
 from collections import defaultdict
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / 'data'
 WEIGHTS = {'gemini': 0.35, 'claude': 0.35, 'gpt': 0.30}
 SCORING_VERSION = 'three-judge-weighted-v1'
 
 
 def load_dataset():
-    data = json.loads((ROOT / 'benchmark.json').read_text())
-    manifest = json.loads((ROOT / 'manifest.json').read_text())
-    digest = hashlib.sha256((ROOT / 'benchmark.json').read_bytes()).hexdigest()
+    data = json.loads((DATA / 'benchmark.json').read_text())
+    manifest = json.loads((DATA / 'manifest.json').read_text())
+    digest = hashlib.sha256((DATA / 'benchmark.json').read_bytes()).hexdigest()
     if digest != manifest['files']['benchmark.json']:
         raise ValueError('Dataset checksum mismatch')
     return data, digest
