@@ -32,11 +32,11 @@ def main():
         if not os.environ.get(j['api_key_env']):
             raise ValueError(f'Missing environment variable {j["api_key_env"]}')
     # The evidence records env-variable names, never their values.
-    prompt = (ROOT / 'judge_prompt.txt').read_text().strip()
+    prompt = (ROOT / 'tools' / 'judge_prompt.txt').read_text().strip()
     policy = {'scoring_version': SCORING_VERSION, 'judges': judges,
               'temperature': config.get('temperature', 0), 'max_tokens': config.get('max_tokens', 8192),
               'prompt_sha256': hashlib.sha256(prompt.encode()).hexdigest(),
-              'scoring_source_sha256': hashlib.sha256((ROOT / 'scoring.py').read_bytes()).hexdigest()}
+              'scoring_source_sha256': hashlib.sha256((ROOT / 'tools' / 'scoring.py').read_bytes()).hexdigest()}
     run_id = hashlib.sha256(json.dumps({'submission': submission, 'policy': policy}, sort_keys=True).encode()).hexdigest()
     evidence = {'run_id': run_id, 'dataset_version': 'release-1', 'dataset_sha256': digest,
                 'model_id': submission['model_id'], 'policy': policy, 'complete': False, 'results': []}
