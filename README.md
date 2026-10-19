@@ -6,8 +6,6 @@
 
 MoveBench 评估大模型在运动健康教练场景中的计划生成（PG）、数据分析（DA）和问答（QA）能力。首批公开 **140 道中文开放题、1,224 条逐题评分细则**，附参考答案、标准化 JSON/JSONL 和本地评测工具。
 
-本仓库由 [SatoSakula](https://github.com/SatoSakula) 维护，数据署名为 **KeepaceAI Team**。数据采用 **CC BY 4.0**，允许商业使用并要求署名；代码采用 MIT。
-
 ## 当前版本
 
 | 范围 | 数量 |
@@ -97,4 +95,4 @@ python3 tools/validate.py --submission predictions.json
 
 ## 引用与许可
 
-使用时注明 **KeepaceAI Team, MoveBench, Release 1**，链接至本仓库，说明是否修改。机器可读引用见 [CITATION.cff](CITATION.cff)。论文的正式发表信息确认后再补充；本仓库不预先声明已发表或编造 DOI。
+使用时注明 ** MoveBench, Release 1**，链接至本仓库，说明是否修改。机器可读引用见 [CITATION.cff](CITATION.cff)。论文的正式发表信息确认后再补充；本仓库不预先声明已发表或编造 DOI。
