@@ -2,7 +2,7 @@
 import argparse
 import hashlib
 import json
-from scoring import ROOT, load_dataset, validate_predictions
+from scoring import DATA, load_dataset, validate_predictions
 
 
 def main():
@@ -10,16 +10,16 @@ def main():
     p.add_argument('--submission')
     args = p.parse_args()
     data, digest = load_dataset()
-    manifest = json.loads((ROOT / 'manifest.json').read_text())
+    manifest = json.loads((DATA / 'manifest.json').read_text())
     for filename, expected in manifest['files'].items():
-        if hashlib.sha256((ROOT / filename).read_bytes()).hexdigest() != expected:
+        if hashlib.sha256((DATA / filename).read_bytes()).hexdigest() != expected:
             raise ValueError(f'Checksum mismatch: {filename}')
     if len(data) != manifest['n_questions'] or len({x['problem_id'] for x in data}) != len(data):
         raise ValueError('Dataset count/ID mismatch')
-    lines = [json.loads(l) for l in (ROOT / 'test.jsonl').read_text().splitlines()]
+    lines = [json.loads(l) for l in (DATA / 'test.jsonl').read_text().splitlines()]
     if lines != data:
         raise ValueError('JSON and JSONL records differ')
-    questions = json.loads((ROOT / 'questions.json').read_text())
+    questions = json.loads((DATA / 'questions.json').read_text())
     if [q['problem_id'] for q in questions] != [x['problem_id'] for x in data]:
         raise ValueError('Question order mismatch')
     count = 0
