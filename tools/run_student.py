@@ -15,7 +15,7 @@ def main():
     p.add_argument('--temperature', type=float, default=0)
     p.add_argument('--max-tokens', type=int, default=4096)
     args = p.parse_args()
-    root = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parent.parent / 'data'
     questions = json.loads((root / 'questions.json').read_text())
     manifest = json.loads((root / 'manifest.json').read_text())
     digest = manifest['files']['benchmark.json']
