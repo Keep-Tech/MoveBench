@@ -10,3 +10,10 @@ evidence*.json
 run_output/
 *.tmp
 .DS_Store
+
+# Never publish private evaluation artifacts
+benchmark.json
+test.jsonl
+judge_prompt.txt
+judge_config*
+private_evaluation/
