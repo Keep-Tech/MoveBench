@@ -6,7 +6,6 @@
   "maintainer": "SatoSakula",
   "license": "CC-BY-4.0",
   "n_questions": 140,
-  "n_rubric_criteria": 1224,
   "domains": {
     "DA": 44,
     "PG": 8,
@@ -30,11 +29,10 @@
   "canonical_type_source": "Original structured annotation, not spreadsheet display labels",
   "paper_benchmark_size": 809,
   "paper_result_scores_applicable": false,
-  "scoring_version": "three-judge-weighted-v1",
   "files": {
-    "benchmark.json": "3d5a7ebcbbfeb5796bca2ec64f466a1cef34f15efc34942679972fd987325583",
-    "test.jsonl": "a47a5e9eb82866f7a5987ac64187435df903bd263063f724efec270517e82e26",
     "questions.json": "9719f329427d2f8554d34eeebbb88d402dcb02b73c42fa56e3b176d00338c795",
     "submission_template.json": "777e0fe03e405cb93a63cae44ca8e7931f10a637b0e1fb19fc0d87cfb1a0a774"
-  }
+  },
+  "dataset_sha256": "3d5a7ebcbbfeb5796bca2ec64f466a1cef34f15efc34942679972fd987325583",
+  "distribution": "questions-only"
 }
