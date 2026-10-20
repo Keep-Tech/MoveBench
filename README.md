@@ -2,7 +2,7 @@
 
 **中文运动健康教练大模型评测集 · KeepaceAI Team**
 
-[English](docs/README_EN.md) · [数据格式](docs/SCHEMA.md) · [参评流程](docs/SUBMISSION.md) · [评分说明](docs/SCORING.md) · [CC BY 4.0](LICENSE)
+[品牌素材](docs/BRAND.md) · [English](docs/README_EN.md) · [数据格式](docs/SCHEMA.md) · [参评流程](docs/SUBMISSION.md) · [评分说明](docs/SCORING.md) · [CC BY 4.0](LICENSE)
 
 MoveBench 评估大模型在运动健康教练场景中的计划生成（PG）、数据分析（DA）和问答（QA）能力。首批公开 **140 道中文开放题、1,224 条逐题评分细则**，附参考答案、标准化 JSON/JSONL 和本地评测工具。
 
