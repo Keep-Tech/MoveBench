@@ -1,22 +1,7 @@
-# 数据格式
+# 公开数据格式
 
-完整 JSON/JSONL 每条记录包含：
+`data/questions.json` 是 JSON 数组，每题包含 `problem_id`、`problem`、`domain`、`question_format`。`problem` 仅有 `context`、`question`、`choices`；140 题全部为开放题（OQ）。context 与 question 相同时只发送一遍。公开文件不包含 evaluation、rubric 或 expect_answer。
 
-| 字段 | 含义 |
-|---|---|
-| `problem_id` | 原始稳定 ID，领域前缀 PG/DA/QA |
-| `problem.context` | 场景或用户上下文 |
-| `problem.question` | 题目正文；可能与 context 相同，生成提示词时去重 |
-| `problem.choices` | 本批均为开放题，保留原始结构 |
-| `evaluation.type` | `rubric` |
-| `evaluation.question_structure` | `openQa` |
-| `evaluation.rubric[]` | `dimension`、`criterion`、`description`、`score`；score 是该项最大值 |
-| `expect_answer` | 原始参考答案，供研究/评分参考，不发送给 Student |
-| `metadata` | 原始结构化标签 |
-| `release_metadata` | 原 Excel 发布筛选标签；不参与评分 |
+`submission_template.json` 保留原 Release 1 版本和 dataset_sha256 标识，填写 model_id、generation 与每题 model_answer 后提交。manifest.files 校验当前公开文件；dataset_sha256 是与维护端匹配的固定版本标识，不要求参评者持有私有评分文件。
 
-`benchmark.json` 与 `test.jsonl` 完全等价。`questions.json` 仅含 `problem_id`、`problem`、`domain`、`question_format`，没有答案或评分细则。保留原题 ID，不重新编号。原文、参考答案和 Rubric 未在导出时改写。
-
-原始发布清单的 140 个 ID 和题目文本均已逐条匹配。58 行 Excel 题型显示标签为空或与原标注不同，因此评分以结构化标注为准。首月分组和筛选理由是来源元数据，不应误读为能力领域或评分维度。
-
-模板中的空答案用于填写，不是可直接评分的样例。正式提交必须包含完整题集，未知/重复 ID、空答案、版本或 hash 不一致都会被拒绝。
+题目文本、ID、顺序和学生 Prompt 未改变。公开问题输入仅用于生成答案，评分在维护端执行。
