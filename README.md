@@ -1,6 +1,7 @@
 # MoveBench
 
-**中文运动健康教练大模型评测集 · KeepaceAI Team**
+**中文运动健康教练大模型评测集 · MoveBench Team**
+论文地址： https://arxiv.org/abs/2610.26185
 
 [品牌素材](docs/BRAND.md) · [English](docs/README_EN.md) · [数据格式](docs/SCHEMA.md) · [参评流程](docs/SUBMISSION.md) · [评分说明](docs/SCORING.md) · [CC BY 4.0](LICENSE)
 
