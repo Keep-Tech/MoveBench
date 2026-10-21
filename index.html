@@ -3,39 +3,269 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="MoveBench 运动健康 AI 评测基准。下载 140 道公开题目，提交模型答案，参与三 Judge 评测。">
-<meta name="theme-color" content="#ffffff">
+<meta name="description" content="MoveBench 运动健康 AI 评测基准。下载 80 道公开题目（50 开放题 + 30 选择题），提交模型答案，参与评测。">
+<meta name="theme-color" content="#0a0a0f">
 <title>参与评测 · MoveBench</title>
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <style>
-:root{color-scheme:light;--ink:#080808;--muted:#626262;--line:#e4e4e4;--paper:#f6f6f6;--green:#080808}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:inherit;text-underline-offset:5px}a:hover{color:#555}a:focus-visible,button:focus-visible{outline:3px solid #1475ba;outline-offset:5px}.skip{position:absolute;left:24px;top:-80px;background:white;padding:10px;z-index:5}.skip:focus{top:12px}.wrap{max-width:1220px;margin:auto;padding:0 40px}header{background:white}header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:92px;gap:30px}.wordmark{font-size:29px;letter-spacing:-1.1px;text-decoration:none;white-space:nowrap;font-weight:450}.wordmark b{font-weight:850}nav{display:flex;gap:30px;align-items:center;font-size:15px}nav a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center}.official{color:#666}.hero{background:linear-gradient(180deg,#a5d3fc 0%,#d6dee0 43%,#ffe1be 79%,#f3d5fb 100%);text-align:center;padding:64px 0 58px}.eyebrow{font-size:14px;letter-spacing:1.8px;font-weight:650;text-transform:uppercase}.hero h1{font-size:clamp(34px,5.5vw,68px);font-weight:800;line-height:1.3;letter-spacing:-2px;margin:27px 0 20px}.hero h1 em{font-family:Georgia,serif;font-style:italic;font-weight:400;font-size:1.16em;margin:0 .12em}.hero p{max-width:820px;margin:0 auto;color:#242424}.actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:26px}.hero .actions{justify-content:center}.button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;background:#080808;color:white;padding:10px 25px;border:1px solid #080808;border-radius:3px;text-decoration:none;font-size:15px;font-weight:600}.button:hover{color:white;background:#303030}.button.secondary{color:#080808;background:transparent}.button.secondary:hover{background:#ffffff60}.stats[hidden]{display:none}.commandbar{display:flex;justify-content:flex-end;align-items:center;gap:18px;margin-top:26px}.commandbar button{background:white;border:1px solid #bdbdbd;color:#111;border-radius:3px;padding:8px 15px;min-height:44px;font:inherit;font-size:13px;cursor:pointer}.codehint{display:none;font-size:12px;color:#666}.commandbar+pre{margin-top:10px}.stats{margin-top:28px;font-size:13px;color:#404040}.stats a{text-decoration:none}.stats strong{font-variant-numeric:tabular-nums}.stats small{display:block;margin-top:5px;font-size:11px;color:#535353}.overview{background:white}.facts{display:grid;grid-template-columns:repeat(3,1fr);padding:35px 0;gap:32px}.facts div+div{border-left:1px solid var(--line);padding-left:40px}.facts b{font-size:38px;font-weight:750;line-height:1.3;letter-spacing:-1px;font-variant-numeric:tabular-nums}.facts span{display:block;color:#626262;font-size:14px;margin-top:3px}.scope{border-top:1px solid var(--line);margin:0;padding:18px 0;font-size:13px;color:var(--muted)}main>section{padding:76px 0}.section-title{text-align:center;margin-bottom:40px}.section-title h2{font-size:36px;letter-spacing:-1px;line-height:1.3;margin:0 0 13px}.section-title p{color:#737373;font-size:14px;letter-spacing:1.5px;margin:0;text-transform:uppercase}.section-intro{max-width:800px;margin:0 0 24px;color:var(--muted)}.panel{background:white;padding:30px 36px}.panel h3{font-size:18px;margin:0 0 20px}.panel h3:before{content:'▪';margin-right:10px}table{border-collapse:collapse;width:100%;font-size:15px}th,td{padding:16px 12px;border-bottom:1px solid #ededed;text-align:left}th{color:#777;font-weight:500}th:last-child,td:last-child{text-align:right}tbody tr:last-child td{border-bottom:0}.note{font-size:13px;color:var(--muted);margin:20px 0 0}.dataset-links{display:flex;gap:26px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:16px;font-size:14px}.participate{background:white}.steps{list-style:none;padding:0;margin:0;counter-reset:step}.steps li{counter-increment:step;display:grid;grid-template-columns:70px 1fr;column-gap:24px;padding:25px 0;border-top:1px solid var(--line)}.steps li:before{content:'0' counter(step);font-size:32px;font-weight:700;line-height:1.3;color:#a2a2a2;font-variant-numeric:tabular-nums}.steps h3{margin:0 0 7px;font-size:20px}.steps p{color:var(--muted);margin:0;max-width:850px;font-size:15px}code{font-family:ui-monospace,SFMono-Regular,monospace;background:#f0f0f0;padding:2px 5px;font-size:.88em}pre{background:#f5f5f5;border-left:2px solid #111;padding:24px 28px;overflow:auto;line-height:1.9;font-size:14px;margin:28px 0 0}pre code{padding:0;font-size:inherit;background:none}.empty{text-align:center;padding:42px 20px;color:#6a6a6a;background:white;min-height:150px}.empty a{display:inline-block;color:#111;margin:12px}.table-scroll{overflow:auto;background:white;padding:12px}.table-scroll table{min-width:640px}.leaderboard-intro{text-align:center;max-width:800px;margin:-12px auto 30px;color:var(--muted);font-size:15px}.leaderboard-note{max-width:850px;margin:24px auto 0;text-align:center;font-size:12px;color:var(--muted)}footer{background:white;border-top:1px solid var(--line);padding:30px 0;font-size:13px;color:#6b6b6b}footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}footer .wordmark{font-size:24px;color:black}.footer-links{display:flex;gap:20px;flex-wrap:wrap}.footer-links a{text-decoration:none}@media(max-width:720px){.wrap{padding:0 22px}header .wrap{min-height:82px;gap:15px;flex-wrap:wrap;padding-top:16px;padding-bottom:12px}.wordmark{font-size:25px}nav{gap:18px;font-size:13px;flex-wrap:wrap;row-gap:0}nav a{min-height:44px}.hero{padding:47px 0 40px}.hero h1{letter-spacing:-1px;margin-top:20px}.hero p{font-size:14px}.hero .actions{gap:12px}.button{padding:10px 17px}.codehint{display:block}.facts{gap:14px;padding:26px 0}.facts div+div{padding-left:18px}.facts b{font-size:29px}.facts span{font-size:12px}.scope{font-size:12px}.section-title h2{font-size:29px}.section-title{margin-bottom:28px}main>section{padding:48px 0}.panel{padding:20px 16px}td,th{padding:13px 7px;font-size:13px}.dataset-links{gap:18px;row-gap:10px}.steps li{grid-template-columns:38px 1fr;gap:15px;padding:23px 0}.steps li:before{font-size:26px}.steps h3{font-size:18px}.steps p{font-size:14px}pre{font-size:12px;padding:19px 16px}.actions{gap:17px}.empty{padding:30px 8px}.footer-links{gap:15px}footer .wrap{gap:16px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:root{
+  color-scheme:dark;
+  --ink:#f4f5f7;--muted:#9a9ba6;--faint:#6d6e78;
+  --bg:#070708;--panel:#111116;--panel2:#16161d;--line:#26262f;--line2:#33333f;
+  --g1:#5fe39a;--g2:#c7e24b;--g3:#f6a43a;--g4:#f45b8a;--g5:#e85cc8;
+  --accent:#8ff0b0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.75 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:4px}
+a:hover{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--g1);outline-offset:4px;border-radius:3px}
+.skip{position:absolute;left:24px;top:-80px;background:var(--panel);color:var(--ink);padding:10px 14px;z-index:9;border-radius:6px}
+.skip:focus{top:12px}
+.wrap{max-width:1180px;margin:auto;padding:0 40px}
+.grad-text{background:linear-gradient(100deg,var(--g1),var(--g2) 32%,var(--g3) 64%,var(--g4) 88%,var(--g5));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* header */
+header{position:sticky;top:0;z-index:8;background:rgba(7,7,8,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;min-height:72px;gap:30px}
+.brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;white-space:nowrap}
+.brand .mb{width:32px;height:32px;display:block;mix-blend-mode:screen}
+.brand .name{font-size:22px;letter-spacing:-.5px;font-weight:700}
+nav{display:flex;gap:28px;align-items:center;font-size:14.5px}
+nav a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+nav a.ext::after{content:' ↗';color:var(--faint)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;text-align:center;padding:96px 0 86px;border-bottom:1px solid var(--line)}
+.hero .aurora{position:absolute;inset:-30% -10% auto -10%;height:140%;z-index:0;filter:blur(70px);opacity:.75;background:
+  radial-gradient(42% 55% at 18% 30%,var(--g1) 0,transparent 70%),
+  radial-gradient(40% 50% at 42% 62%,var(--g2) 0,transparent 72%),
+  radial-gradient(44% 56% at 68% 40%,var(--g3) 0,transparent 72%),
+  radial-gradient(40% 52% at 86% 70%,var(--g4) 0,transparent 72%),
+  radial-gradient(38% 48% at 60% 88%,var(--g5) 0,transparent 74%)}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{font-size:12.5px;letter-spacing:3px;font-weight:700;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-size:clamp(30px,4.4vw,58px);font-weight:800;line-height:1.22;letter-spacing:-1.5px;margin:22px 0 20px;max-width:960px;margin-left:auto;margin-right:auto;text-wrap:balance}
+.hero h1 em{font-style:normal}
+.hero p{max-width:720px;margin:0 auto;color:#c9cad3;font-size:17px}
+.actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:34px}
+.hero .actions{justify-content:center}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 28px;border-radius:9px;text-decoration:none;font-size:15px;font-weight:700;border:1px solid transparent}
+/* 左：白底 + 彩色渐变字 */
+.button.primary{background:#ffffff;box-shadow:0 8px 30px -10px rgba(246,164,58,.45)}
+.button.primary span{background:linear-gradient(100deg,#1fb866,#e08a1a 52%,#e0346a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.button.primary:hover{filter:brightness(1.02);box-shadow:0 10px 34px -10px rgba(246,164,58,.6)}
+/* 右：白底 + 黑字 */
+.button.ghost{color:#0a0a0f;background:#ffffff}
+.button.ghost:hover{color:#0a0a0f;background:#eef0f3}
+
+/* facts */
+.facts-wrap{border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.015),transparent)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);padding:40px 0;gap:0}
+.facts div{padding:6px 28px;position:relative}
+.facts div+div::before{content:'';position:absolute;left:0;top:14%;height:72%;width:1px;background:var(--line)}
+.facts b{font-size:42px;font-weight:750;line-height:1.1;letter-spacing:-1.5px;font-variant-numeric:tabular-nums;display:block}
+.facts span{display:block;color:var(--muted);font-size:13.5px;margin-top:8px}
+.scope{border-top:1px solid var(--line);margin:0;padding:16px 0;font-size:12.5px;color:var(--faint);text-align:center}
+
+/* sections */
+main>section{padding:86px 0;border-bottom:1px solid var(--line)}
+.section-title{text-align:center;margin-bottom:46px}
+.section-title h2{font-size:clamp(28px,4vw,40px);letter-spacing:-1px;line-height:1.2;margin:0 0 12px;font-weight:750}
+.section-title p{color:var(--faint);font-size:13px;letter-spacing:2.5px;margin:0;text-transform:uppercase}
+.section-intro{max-width:760px;margin:0 auto 36px;color:var(--muted);text-align:center;font-size:15.5px}
+
+/* dataset cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px 26px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g5))}
+.card .tag{font-size:12px;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;color:var(--faint)}
+.card b{display:block;font-size:40px;font-weight:750;letter-spacing:-1.5px;margin:10px 0 2px;font-variant-numeric:tabular-nums}
+.card .label{font-size:16px;font-weight:600;margin-bottom:10px}
+.card p{color:var(--muted);font-size:14px;margin:0}
+.breakdown{display:flex;gap:10px;flex-wrap:wrap;margin-top:40px;justify-content:center}
+.chip{display:inline-flex;align-items:center;gap:8px;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13.5px;color:var(--muted)}
+.chip b{color:var(--ink);font-variant-numeric:tabular-nums}
+.chip .dot{width:9px;height:9px;border-radius:50%}
+.dataset-links{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:40px}
+.pill{display:inline-flex;align-items:center;min-height:44px;padding:9px 18px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);text-decoration:none;font-size:14px;color:var(--ink)}
+.pill:hover{color:var(--ink);border-color:var(--line2);background:var(--panel)}
+.note{font-size:13px;color:var(--faint);margin:28px auto 0;max-width:760px;text-align:center}
+
+/* steps */
+.steps{list-style:none;padding:0;margin:0;max-width:900px;margin:0 auto;counter-reset:step;display:grid;gap:14px}
+.steps li{counter-increment:step;display:grid;grid-template-columns:62px 1fr;gap:22px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.steps li::before{content:counter(step,decimal-leading-zero);font-size:26px;font-weight:750;line-height:1.2;font-variant-numeric:tabular-nums;background:linear-gradient(135deg,var(--g1),var(--g3) 60%,var(--g4));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.steps h3{margin:0 0 6px;font-size:18px}
+.steps p{color:var(--muted);margin:0;font-size:14.5px}
+.cta{text-align:center;margin-top:36px}
+.commandbar{max-width:900px;margin:40px auto 0}
+.commandbar .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:-1px}
+.commandbar button{background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:8px 15px;min-height:40px;font:inherit;font-size:13px;cursor:pointer}
+.commandbar button:hover{color:var(--ink);border-color:var(--line2)}
+.codehint{display:none;font-size:12px;color:var(--faint)}
+pre{background:#0c0c11;border:1px solid var(--line);border-radius:12px;padding:22px 24px;overflow:auto;line-height:1.85;font-size:13.5px;margin:0}
+code{font-family:ui-monospace,SFMono-Regular,"SF Mono",monospace}
+pre code{color:#d7d8e0}
+pre code .c{color:#7fd8a0}
+
+/* leaderboard */
+.leaderboard-intro{text-align:center;max-width:760px;margin:-20px auto 34px;color:var(--muted);font-size:15px}
+.empty{text-align:center;padding:48px 20px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.empty a{color:var(--accent);margin:0 8px}
+.table-scroll{overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:620px}
+th,td{padding:15px 14px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--faint);font-weight:600;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase}
+th:not(:nth-child(2)),td:not(:nth-child(2)){text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:rgba(255,255,255,.02)}
+.leaderboard-note{max-width:820px;margin:26px auto 0;text-align:center;font-size:12px;color:var(--faint)}
+
+/* footer */
+footer{padding:40px 0 48px;position:relative;overflow:hidden}
+footer .glow{position:absolute;inset:auto -10% -60% -10%;height:200px;z-index:0;filter:blur(60px);opacity:.5;background:radial-gradient(40% 100% at 20% 100%,var(--g1),transparent 70%),radial-gradient(40% 100% at 55% 100%,var(--g2),transparent 70%),radial-gradient(40% 100% at 85% 100%,var(--g4),transparent 70%)}
+footer .wrap{position:relative;z-index:1}
+.footer-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+footer .brand .name{font-size:19px}
+footer .brand .mb{width:24px;height:24px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;font-size:13.5px}
+.footer-links a{text-decoration:none;color:var(--muted)}
+.footer-mute{color:var(--faint);font-size:13px}
+.copyright{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);text-align:center;color:var(--faint);font-size:12.5px}
+
+@media(max-width:860px){.facts{grid-template-columns:repeat(2,1fr);gap:4px 0;row-gap:28px}.facts div:nth-child(3)::before,.facts div:nth-child(odd)::before{display:none}.cards{grid-template-columns:1fr}}
+@media(max-width:720px){
+  .wrap{padding:0 22px}
+  header .wrap{min-height:62px;gap:14px}
+  nav{gap:16px;font-size:13px;flex-wrap:wrap;row-gap:0}
+  .hero{padding:66px 0 56px}
+  .hero p{font-size:15px}
+  .facts b{font-size:32px}
+  main>section{padding:56px 0}
+  .steps li{grid-template-columns:40px 1fr;gap:14px;padding:20px}
+  .codehint{display:block}
+  th,td{padding:12px 10px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 <a class="skip" href="#participate">跳到参评流程</a>
-<header><div class="wrap"><a class="wordmark" href="https://keepace.ai/" aria-label="MoveBench 官网"><b>Move</b>Bench</a><nav aria-label="主导航"><a class="official" href="https://keepace.ai/">官网 ↗</a><a href="#dataset">开源数据</a><a href="#participate">参与评测</a><a href="#leaderboard">评测榜单</a><a href="https://github.com/SatoSakula/MoveBench">GitHub ↗</a></nav></div></header>
-<section class="hero" aria-labelledby="title"><div class="wrap"><div class="eyebrow">MOVEBENCH / OPEN EVALUATION</div><h1 id="title">运动健康 <em>AI</em> 评测基准</h1><p>面向运动健康场景，评估大模型的训练方案生成、运动数据解读与专业知识问答能力。<br>下载公开题目，提交模型答案，参与 MoveBench 评测。</p><div class="actions"><a class="button" href="#participate">参与评测 →</a><a class="button secondary" href="https://github.com/SatoSakula/MoveBench/blob/main/data/questions.json">下载数据集</a></div><div class="stats" aria-live="polite" hidden><a href="https://github.com/SatoSakula/MoveBench/stargazers">GitHub Stars <strong id="stars">—</strong></a> · <a href="https://github.com/SatoSakula/MoveBench/releases/tag/release-1">Release 附件下载 <strong id="downloads">—</strong></a><small>附件累计下载次数，非独立人数；不含仓库文件下载或 git clone。暂不可用时显示 —。</small></div></div></section>
-<div class="overview"><div class="wrap"><div class="facts"><div><b>140</b><span>首批公开题目</span></div><div><b>140</b><span>开放题 · 提交答案后评分</span></div><div><b>3</b><span>核心评测场景</span></div></div><p class="scope">公开评测 · Release 1：这是论文 809 题评测集的首批公开子集。官网及论文完整题库成绩与本页公开版成绩分开报告。</p></div></div>
+
+<header><div class="wrap">
+  <a class="brand" href="https://keepace.ai/" aria-label="MoveBench 官网">
+    <img class="mb" src="assets/brand/movebench-mb-square.png" alt="MoveBench" width="32" height="32">
+    <span class="name">movebench</span>
+  </a>
+  <nav aria-label="主导航">
+    <a class="ext" href="https://keepace.ai/">官网</a>
+    <a href="#dataset">开源数据</a>
+    <a href="#participate">参与评测</a>
+    <a href="#leaderboard">评测榜单</a>
+    <a class="ext" href="https://github.com/SatoSakula/MoveBench">GitHub</a>
+  </nav>
+</div></header>
+
+<section class="hero" aria-labelledby="title">
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="eyebrow">MoveBench · Open Evaluation</div>
+    <h1 id="title">加入 MoveBench™ 评估计划，<br>让您的模型在 <em class="grad-text">运动科学</em> 领域更进一步。</h1>
+    <div class="actions">
+      <a class="button primary" href="#participate"><span>参与评测 →</span></a>
+      <a class="button ghost" href="https://github.com/SatoSakula/MoveBench/blob/main/data/questions.json">下载数据集</a>
+    </div>
+  </div>
+</section>
+
+<div class="facts-wrap"><div class="wrap">
+  <div class="facts">
+    <div><b class="grad-text">80</b><span>公开题目</span></div>
+    <div><b>50</b><span>开放题 OQ · rubric 评分</span></div>
+    <div><b>30</b><span>选择题 MCQ · 自动判分</span></div>
+    <div><b>3</b><span>核心评测场景</span></div>
+  </div>
+  <p class="scope">公开评测 · Release 1：这是论文 809 题评测集的公开子集。论文完整题库成绩与本页公开版成绩分别报告。</p>
+</div></div>
+
 <main>
-<section id="dataset"><div class="wrap"><div class="section-title"><h2>开源数据集</h2><p>OPEN DATASET</p></div><p class="section-intro">公开提供题目、稳定 ID、领域与题型。具体评分项、参考答案及评分流程由维护端私有保存。</p><div class="panel"><h3>三大核心场景</h3><table><thead><tr><th>场景</th><th>任务</th><th>公开题数</th></tr></thead><tbody><tr><td>PG</td><td>训练方案生成</td><td>8</td></tr><tr><td>DA</td><td>运动数据解读</td><td>44</td></tr><tr><td>QA</td><td>专业知识问答</td><td>88</td></tr></tbody></table><p class="note">参评者只需完成题目并提交答案，评分由维护端执行。</p><div class="dataset-links"><a href="https://github.com/SatoSakula/MoveBench/blob/main/data/questions.json">模型输入 · 仅题目 ↓</a><a href="data/manifest.json">版本与校验值 ↗</a></div></div><p class="note">数据许可 CC BY 4.0：允许商业使用，需署名 KeepaceAI Team。评测代码采用 MIT 许可。</p></div></section>
-<section class="participate" id="participate"><div class="wrap"><div class="section-title"><h2>参与评测</h2><p>PARTICIPATE IN MOVEBENCH</p></div><ol class="steps"><li><div><h3>生成模型答案</h3><p>下载 <code>questions.json</code>，用本地模型或 API 完成全部 140 题。Student 输入仅使用问题，不使用参考答案和评分细则。</p></div></li><li><div><h3>提交完整答案</h3><p>按提交模板填写答案、精确模型版本和生成设置，通过 GitHub Pull Request 提交至 <code>submissions/</code>。请勿在公开文件中填写 API Key。</p></div></li><li><div><h3>评分审核后上榜</h3><p>维护者使用私有评分流程评测并审核，再更新公开版榜单。当前采用维护者审核流程，提交后不会即时自动评分。</p></div></li></ol><div class="actions"><a class="button" href="https://github.com/SatoSakula/MoveBench/blob/main/data/submission_template.json">下载提交模板 ↓</a><a href="https://github.com/SatoSakula/MoveBench/blob/main/docs/SUBMISSION.md">完整参评指南 ↗</a></div><div class="commandbar"><span class="codehint">命令较长，可左右滑动</span><button id="copy-command" type="button" aria-live="polite">复制命令</button></div><pre tabindex="0" aria-label="快速开始命令，可左右滑动"><code id="quickstart">git clone https://github.com/SatoSakula/MoveBench.git
-cd MoveBench
-python3 tools/validate.py
-python3 tools/run_student.py --model your-model \
-  --base-url https://api.example.com/v1 --output predictions.json</code></pre><p class="note">运行前在本机配置 STUDENT_API_KEY。脚本支持 Python 3.10+ 和 OpenAI-compatible Chat Completions 接口。</p></div></section>
-<section id="leaderboard"><div class="wrap"><div class="section-title"><h2>公开版评测榜单</h2><p>AI LEADERBOARD / RELEASE 1</p></div><p class="leaderboard-intro">仅展示在这 140 题上完成三 Judge 评分并经维护者审核的结果。<br>分数以 0–1 显示，完整覆盖率为上榜条件。</p><div id="board" role="status" class="empty">正在读取本版本榜单…</div><p class="leaderboard-note">具体评分项和完整证据私有保存；历史版本曾公开评分材料。成绩不构成医疗安全或真实训练效果认证。</p></div></section>
+<section id="dataset"><div class="wrap">
+  <div class="section-title"><h2>开源数据集</h2><p>Open Dataset</p></div>
+  <p class="section-intro">公开题目、稳定 ID、领域与题型。开放题附 rubric 评分细则与参考答案，选择题附标准答案；Judge Prompt 与评分流程由维护端私有保存。</p>
+  <div class="cards">
+    <div class="card"><span class="tag">PG · Plan Generation</span><b>26</b><div class="label">训练方案生成</div><p>结合用户画像与目标，生成科学、可执行、安全的训练与课程安排。</p></div>
+    <div class="card"><span class="tag">DA · Data Analysis</span><b>29</b><div class="label">运动数据解读</div><p>基于运动记录与身体数据，评估强度、负荷与风险并给出进阶建议。</p></div>
+    <div class="card"><span class="tag">QA · Question Answering</span><b>25</b><div class="label">专业知识问答</div><p>回答运动健康领域的专业问题，识别误区与红线、守住执业边界。</p></div>
+  </div>
+  <div class="breakdown">
+    <span class="chip"><span class="dot" style="background:var(--g1)"></span>开放题 OQ <b>50</b></span>
+    <span class="chip"><span class="dot" style="background:var(--g3)"></span>选择题 MCQ <b>30</b>（单选 11 · 多选 19）</span>
+    <span class="chip"><span class="dot" style="background:var(--g4)"></span>rubric 评分细则 <b>464</b> 条</span>
+  </div>
+  <div class="dataset-links">
+    <a class="pill" href="https://github.com/SatoSakula/MoveBench/blob/main/data/questions.json">模型输入 · 仅题目 ↓</a>
+    <a class="pill" href="https://github.com/SatoSakula/MoveBench/blob/main/data/benchmark.json">完整记录 · 含 rubric/答案 ↓</a>
+    <a class="pill" href="data/manifest.json">版本与校验值 ↗</a>
+  </div>
+  <p class="note">数据许可 CC BY 4.0：允许商业使用，需署名 KeepaceAI Team。评测代码采用 MIT 许可。</p>
+</div></section>
+
+<section class="participate" id="participate"><div class="wrap">
+  <div class="section-title"><h2>参与评测</h2><p>Participate in MoveBench</p></div>
+  <ol class="steps">
+    <li><div><h3>生成模型答案</h3><p>下载 <code>questions.json</code>，用本地模型或 API 完成全部 80 题。开放题输入仅使用问题，选择题附带选项并要求输出选项字母。</p></div></li>
+    <li><div><h3>提交完整答案</h3><p>按提交模板填写答案、精确模型版本和生成设置，通过 GitHub Pull Request 提交至 <code>submissions/</code>。请勿在公开文件中填写 API Key。</p></div></li>
+    <li><div><h3>评分审核后上榜</h3><p>维护者使用私有评分流程评测并审核，再更新公开版榜单。当前采用维护者审核流程，提交后不会即时自动评分。</p></div></li>
+  </ol>
+  <div class="commandbar">
+    <div class="bar"><span class="codehint">命令较长，可左右滑动</span><button id="copy-command" type="button" aria-live="polite">复制命令</button></div>
+<pre tabindex="0" aria-label="快速开始命令，可左右滑动"><code id="quickstart"><span class="c">git</span> clone https://github.com/SatoSakula/MoveBench.git
+<span class="c">cd</span> MoveBench
+<span class="c">python3</span> tools/validate.py
+<span class="c">python3</span> tools/run_student.py --model your-model \
+  --base-url https://api.example.com/v1 --output predictions.json</code></pre>
+  </div>
+  <p class="note">运行前在本机配置 STUDENT_API_KEY。脚本支持 Python 3.10+ 和 OpenAI-compatible Chat Completions 接口。</p>
+  <div class="cta">
+    <a class="button ghost" href="https://github.com/SatoSakula/MoveBench/blob/main/data/submission_template.json">下载提交模板 ↓</a>
+    <a class="button ghost" href="https://github.com/SatoSakula/MoveBench/blob/main/docs/SUBMISSION.md">完整参评指南 ↗</a>
+  </div>
+</div></section>
+
+<section id="leaderboard"><div class="wrap">
+  <div class="section-title"><h2>公开版评测榜单</h2><p>AI Leaderboard / Release 1</p></div>
+  <p class="leaderboard-intro">仅展示在这 80 题上完成评分并经维护者审核的结果。分数以 0–1 显示，完整覆盖率为上榜条件。</p>
+  <div id="board" role="status" class="empty">正在读取本版本榜单…</div>
+  <p class="leaderboard-note">本版本公开了 rubric 与参考答案，公开成绩可能受数据污染影响；完整评分证据私有保存。成绩不构成医疗安全或真实训练效果认证。</p>
+</div></section>
 </main>
-<footer><div class="wrap"><a class="wordmark" href="https://keepace.ai/"><b>Move</b>Bench</a><span>KeepaceAI Team · Maintained by <a href="https://github.com/SatoSakula">SatoSakula</a></span><div class="footer-links"><a href="https://keepace.ai/">Keepace.ai ↗</a><a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a><a href="https://github.com/SatoSakula/MoveBench/issues">反馈问题</a></div></div></footer>
+
+<footer>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="footer-row">
+      <a class="brand" href="https://keepace.ai/">
+        <img class="mb" src="assets/brand/movebench-mb-square.png" alt="MoveBench" width="24" height="24">
+        <span class="name">movebench</span>
+      </a>
+      <span class="footer-mute">KeepaceAI Team · Maintained by <a href="https://github.com/SatoSakula">SatoSakula</a></span>
+      <div class="footer-links">
+        <a href="https://keepace.ai/">Keepace.ai ↗</a>
+        <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+        <a href="https://github.com/SatoSakula/MoveBench/issues">反馈问题</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 MoveBench 保留所有权利.</div>
+  </div>
+</footer>
+
 <script>
 document.getElementById('copy-command').addEventListener('click',async function(){try{await navigator.clipboard.writeText(document.getElementById('quickstart').textContent);this.textContent='已复制';setTimeout(()=>this.textContent='复制命令',2000)}catch{this.textContent='请选中下方命令复制'}});
 
-async function showStats(){
- const api='https://api.github.com/repos/SatoSakula/MoveBench';
- const jobs=[['stars',api,d=>d.stargazers_count],['downloads',api+'/releases/tags/release-1',d=>Array.isArray(d.assets)?d.assets.reduce((n,a)=>n+a.download_count,0):NaN]];
- await Promise.allSettled(jobs.map(async([id,url,value])=>{const r=await fetch(url,{headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw Error('stats unavailable');const n=value(await r.json());if(Number.isSafeInteger(n)&&n>=0){document.getElementById(id).textContent=n.toLocaleString('zh-CN');document.querySelector('.stats').hidden=false}}));
-}showStats();
-
-async function showBoard(){const host=document.getElementById('board');try{const response=await fetch('leaderboard.json',{cache:'no-store'});if(!response.ok)throw Error('unavailable');const board=await response.json();if(board.dataset_version!=='release-1'||!Array.isArray(board.entries))throw Error('invalid');if(!board.entries.length){host.textContent='暂未发布本版本的审核成绩。';const submit=document.createElement('a');submit.href='#participate';submit.textContent=' 提交首批模型答案 →';host.append(submit);return}host.className='table-scroll';host.textContent='';const table=document.createElement('table');const head=table.createTHead().insertRow();for(const label of ['排名','模型','Overall','PG','DA','QA','证据']){const th=document.createElement('th');th.textContent=label;head.append(th)}const body=table.createTBody();const entries=board.entries.slice().sort((a,b)=>b.overall-a.overall);entries.forEach((entry,i)=>{const row=body.insertRow();const values=[i+1,entry.model_id,entry.overall,entry.domain_macro?.PG,entry.domain_macro?.DA,entry.domain_macro?.QA];values.forEach((value,j)=>{const cell=row.insertCell();cell.textContent=j>=2&&Number.isFinite(value)?value.toFixed(3):String(value??'—')});const cell=row.insertCell();try{const url=new URL(entry.evidence_url);if(url.protocol!=='https:')throw Error('scheme');const a=document.createElement('a');a.href=url.href;a.textContent='逐题证据';a.rel='noopener noreferrer';cell.append(a)}catch{cell.textContent='维护端审核'}});host.append(table)}catch{host.textContent='暂时无法读取榜单。';const link=document.createElement('a');link.href='https://github.com/SatoSakula/MoveBench/blob/main/leaderboard.json';link.textContent=' 在 GitHub 查看榜单文件';host.append(link)}}showBoard();
+async function showBoard(){const host=document.getElementById('board');try{const response=await fetch('leaderboard.json',{cache:'no-store'});if(!response.ok)throw Error('unavailable');const board=await response.json();if(board.dataset_version!=='release-1'||!Array.isArray(board.entries))throw Error('invalid');if(!board.entries.length){host.textContent='暂未发布本版本的审核成绩。';const submit=document.createElement('a');submit.href='#participate';submit.textContent='提交首批模型答案 →';host.append(submit);return}host.className='table-scroll';host.textContent='';const table=document.createElement('table');const head=table.createTHead().insertRow();for(const label of ['排名','模型','Overall','PG','DA','QA','证据']){const th=document.createElement('th');th.textContent=label;head.append(th)}const body=table.createTBody();const entries=board.entries.slice().sort((a,b)=>b.overall-a.overall);entries.forEach((entry,i)=>{const row=body.insertRow();const values=[i+1,entry.model_id,entry.overall,entry.domain_macro?.PG,entry.domain_macro?.DA,entry.domain_macro?.QA];values.forEach((value,j)=>{const cell=row.insertCell();cell.textContent=j>=2&&Number.isFinite(value)?value.toFixed(3):String(value??'—')});const cell=row.insertCell();try{const url=new URL(entry.evidence_url);if(url.protocol!=='https:')throw Error('scheme');const a=document.createElement('a');a.href=url.href;a.textContent='逐题证据';a.rel='noopener noreferrer';cell.append(a)}catch{cell.textContent='维护端审核'}});host.append(table)}catch{host.textContent='暂时无法读取榜单。';const link=document.createElement('a');link.href='https://github.com/SatoSakula/MoveBench/blob/main/leaderboard.json';link.textContent='在 GitHub 查看榜单文件';host.append(link)}}showBoard();
 </script>
 </body>
 </html>

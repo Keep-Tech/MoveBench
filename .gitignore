@@ -11,9 +11,8 @@ run_output/
 *.tmp
 .DS_Store
 
-# Never publish private evaluation artifacts
-benchmark.json
-test.jsonl
+# Release 1 公开完整记录（题干 + rubric + 参考答案 + MCQ 选项/答案）随仓库发布。
+# 仍不发布更敏感的评分材料：
 judge_prompt.txt
 judge_config*
 private_evaluation/

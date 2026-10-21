@@ -5,34 +5,33 @@
   "attribution": "KeepaceAI Team",
   "maintainer": "SatoSakula",
   "license": "CC-BY-4.0",
-  "n_questions": 140,
+  "n_questions": 80,
+  "n_rubric_criteria": 464,
   "domains": {
-    "DA": 44,
-    "PG": 8,
-    "QA": 88
+    "DA": 29,
+    "PG": 26,
+    "QA": 25
   },
   "question_formats": {
-    "OQ": 140
+    "OQ": 50,
+    "MCQ": 30
   },
   "difficulty": {
-    "L1 简单": 136,
-    "L2 中等": 4
+    "L2 中等": 1,
+    "L1 简单": 48
   },
-  "groups": {
-    "基础动作/课程与应用理解": 53,
-    "基础知识与训练原则": 87
-  },
-  "selection_file": "Movebench_开源_release_1.xlsx",
-  "selection_file_sha256": "8ce6cc033f1cefbe2ed1cd226a0dfb53ebd9a3bae0f6e5ef4b0dbb1a1593359f",
-  "exact_id_and_question_text_matches": 140,
-  "source_label_mismatches": 58,
-  "canonical_type_source": "Original structured annotation, not spreadsheet display labels",
+  "difficulty_unlabeled": 31,
+  "oq_with_reference_answer": 29,
+  "mcq_scoring": "exact_match",
+  "distribution": "full-records-with-rubric-and-answers",
   "paper_benchmark_size": 809,
   "paper_result_scores_applicable": false,
+  "scoring_version": "three-judge-weighted-v1",
   "files": {
-    "questions.json": "9719f329427d2f8554d34eeebbb88d402dcb02b73c42fa56e3b176d00338c795",
-    "submission_template.json": "777e0fe03e405cb93a63cae44ca8e7931f10a637b0e1fb19fc0d87cfb1a0a774"
+    "benchmark.json": "a1d949e588f1eaccecab13ffdec4d57c5161c6cdd67a853c1a41d232e2970d07",
+    "test.jsonl": "ec816373ff7de68193b24c56afad937485d0511f034effca08bd321bb69dd423",
+    "questions.json": "545be6fa8bb5625beb51556f913bd595dc11894260470004d8853de22cc2eaf9",
+    "submission_template.json": "449e7f732bb07d2d5c71574269ca54d76d3e55eff2ef7b15af61346c400dff91"
   },
-  "dataset_sha256": "3d5a7ebcbbfeb5796bca2ec64f466a1cef34f15efc34942679972fd987325583",
-  "distribution": "questions-only"
+  "dataset_sha256": "a1d949e588f1eaccecab13ffdec4d57c5161c6cdd67a853c1a41d232e2970d07"
 }
