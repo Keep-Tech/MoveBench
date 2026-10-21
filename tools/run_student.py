@@ -37,7 +37,13 @@ def main():
         problem = item['problem']
         context, question = problem.get('context') or '', problem.get('question') or ''
         body = question if context == question else '\n\n'.join(x for x in (context, question) if x)
-        prompt = f'你是一名专业运动健康专家。\n\n{body}\n\n请给出结构化、专业、安全的中文回答。'
+        if item.get('question_format') == 'MCQ':
+            choices = problem.get('choices') or {}
+            options = '\n'.join(f'{k}. {v}' for k, v in sorted(choices.items()))
+            prompt = (f'你是一名专业运动健康专家。请阅读题目和选项后作答。\n\n{body}\n\n选项：\n{options}\n\n'
+                      '请只输出正确选项的字母（如单选 A，多选 A,C）；可在字母后换行给出简要理由。')
+        else:
+            prompt = f'你是一名专业运动健康专家。\n\n{body}\n\n请给出结构化、专业、安全的中文回答。'
         answer = chat(args.base_url, key, args.model, [{'role': 'user', 'content': prompt}],
                       args.temperature, args.max_tokens)
         submission['predictions'].append({'problem_id': item['problem_id'], 'model_answer': answer})

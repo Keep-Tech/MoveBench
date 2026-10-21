@@ -15,8 +15,10 @@ def validate(submission=None):
     for q in questions:
         if set(q)!={'problem_id','problem','domain','question_format'} or set(q['problem'])!={'context','question','choices'}:
             raise ValueError('Unexpected question fields')
-        if q['question_format']!='OQ' or not (q['problem'].get('question') or q['problem'].get('context')):
+        if q['question_format'] not in ('OQ','MCQ') or not (q['problem'].get('question') or q['problem'].get('context')):
             raise ValueError('Invalid question')
+        if q['question_format']=='MCQ' and not q['problem'].get('choices'):
+            raise ValueError('MCQ question missing choices: '+q['problem_id'])
     if submission is not None:
         if submission.get('dataset_version')!=manifest['version'] or submission.get('dataset_sha256')!=manifest['dataset_sha256']:
             raise ValueError('Dataset version/hash mismatch')
