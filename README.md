@@ -2,9 +2,9 @@
 
 中文运动健康教练大模型评测集 · MoveBench Team
 
-[论文](https://arxiv.org/abs/2610.26185) · [在线题库与榜单](https://satosakula.github.io/MoveBench/) · [参评指南](docs/SUBMISSION.md) · [数据格式](docs/SCHEMA.md) · [English](docs/README_EN.md) · [品牌素材](docs/BRAND.md)
+[论文](https://arxiv.org/abs/2610.26185) · [在线题库与榜单](https://satosakula.github.io/MoveBench/) · [参评指南](docs/SUBMISSION.md) · [数据格式](docs/SCHEMA.md) · [English](docs/README_EN.md) 
 
-公开提供 **80 道中文题目**，覆盖计划生成 PG、运动数据分析 DA、专业知识问答 QA 三个场景，含 **50 道开放题（OQ）** 与 **30 道选择题（MCQ）**。这是论文 809 题完整评测集的公开子集；论文成绩与本批题目成绩分别报告。
+公开提供 **80 道中文题目**，覆盖计划生成 PG、运动数据分析 DA、专业知识问答 QA 三个场景，含 **50 道开放题（OQ）** 与 **30 道选择题（MCQ）**。
 
 ## 当前公开范围
 
@@ -22,11 +22,9 @@
 - `data/manifest.json`：版本、数量、校验值和数据集标识。
 - `tools/`：学生模型作答与答案格式校验工具。
 
-本版本公开题目、rubric 与参考答案。MCQ 采用 exact_match 判分，答案已随题公开。OQ 采用 rubric 逐项评分，具体 Judge Prompt、评分配置和维护端执行流程由维护者私有保存，提交后在维护端评分。当前维护端运行于受信任本机并调用云端 API，没有全天候自动评分服务。
-
 ## 题目人群分布
 
-80 道题均基于真实用户画像构建，覆盖不同性别、年龄、体型与身体状况。下图为按题干文本提取的分布（开放题含明确人物画像，部分题目未明示；体型依 BMI 数值判定，缺失时用身高体重补算）。
+80 道题均基于真实用户画像构建，覆盖不同性别、年龄、体型与身体状况。
 
 ![MoveBench 80 题人群画像分布](assets/brand/demographics.png)
 
@@ -69,8 +67,3 @@ Python 3.10+，公开工具仅依赖标准库。`run_student.py` 对 OQ 发送�
 - 模型身份、生成设置及是否接触过本数据集由提交者声明，维护者可能要求补充生成记录。
 - 成绩不构成医疗安全或真实训练效果认证。
 
-删除或收紧仓库文件无法撤回已下载内容、Git 历史或既有发布包。如需真正的隐藏测试，应另设未公开测试集。
-
-## 许可与引用
-
-公开题目采用 [CC BY 4.0](LICENSE)，公开代码采用 [MIT](LICENSE-CODE)。引用 MoveBench, Release 1 并链接本仓库，说明修改情况；论文见 [arXiv](https://arxiv.org/abs/2610.26185)。
