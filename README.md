@@ -40,7 +40,7 @@
 ## 下载与作答
 
 ```bash
-git clone https://github.com/SatoSakula/MoveBench.git
+git clone https://github.com/Keep-Tech/MoveBench.git
 cd MoveBench
 python3 tools/validate.py
 export STUDENT_API_KEY='在本机设置，不要提交到 GitHub'
