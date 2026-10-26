@@ -2,7 +2,7 @@
 
 中文运动健康教练大模型评测集 · **MoveBench Team x 首都体育学院**
 
-[论文](https://arxiv.org/abs/2610.26185) · [在线题库与榜单](https://satosakula.github.io/MoveBench/) · [参评指南](docs/SUBMISSION.md) · [数据格式](docs/SCHEMA.md) · [English](docs/README_EN.md) 
+[论文](https://arxiv.org/abs/2610.26185) · [在线题库与榜单](https://keep-tech.github.io/MoveBench/) · [参评指南](docs/SUBMISSION.md) · [数据格式](docs/SCHEMA.md) · [English](docs/README_EN.md) 
 
 公开提供 **80 道中文题目**，覆盖个性化课程方案 PG、运动数据解读 DA、专业知识问答 QA 三个场景，含 **50 道开放题（OQ）** 与 **30 道选择题（MCQ）**。
 
