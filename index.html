@@ -165,7 +165,7 @@ footer .brand .mb{width:24px;height:24px}
     <a href="#dataset">开源数据</a>
     <a href="#participate">参与评测</a>
     <a href="#leaderboard">评测榜单</a>
-    <a class="ext" href="https://github.com/SatoSakula/MoveBench">GitHub</a>
+    <a class="ext" href="https://github.com/Keep-Tech/MoveBench">GitHub</a>
   </nav>
 </div></header>
 
@@ -176,7 +176,7 @@ footer .brand .mb{width:24px;height:24px}
     <h1 id="title">加入 MoveBench™ 评估计划，<br>让您的模型在 <em class="grad-text">运动科学</em> 领域更进一步。</h1>
     <div class="actions">
       <a class="button primary" href="#participate"><span>参与评测 →</span></a>
-      <a class="button ghost" href="https://github.com/SatoSakula/MoveBench/blob/main/data/questions.json">下载数据集</a>
+      <a class="button ghost" href="https://github.com/Keep-Tech/MoveBench/blob/main/data/questions.json">下载数据集</a>
     </div>
   </div>
 </section>
@@ -206,8 +206,8 @@ footer .brand .mb{width:24px;height:24px}
     <span class="chip"><span class="dot" style="background:var(--g4)"></span>rubric 评分细则 <b>464</b> 条</span>
   </div>
   <div class="dataset-links">
-    <a class="pill" href="https://github.com/SatoSakula/MoveBench/blob/main/data/questions.json">模型输入 · 仅题目 ↓</a>
-    <a class="pill" href="https://github.com/SatoSakula/MoveBench/blob/main/data/benchmark.json">完整记录 · 含 rubric/答案 ↓</a>
+    <a class="pill" href="https://github.com/Keep-Tech/MoveBench/blob/main/data/questions.json">模型输入 · 仅题目 ↓</a>
+    <a class="pill" href="https://github.com/Keep-Tech/MoveBench/blob/main/data/benchmark.json">完整记录 · 含 rubric/答案 ↓</a>
     <a class="pill" href="data/manifest.json">版本与校验值 ↗</a>
   </div>
   <p class="note">数据许可 CC BY 4.0：允许商业使用，需署名 KeepaceAI Team。评测代码采用 MIT 许可。</p>
@@ -220,18 +220,21 @@ footer .brand .mb{width:24px;height:24px}
     <li><div><h3>提交完整答案</h3><p>按提交模板填写答案、精确模型版本和生成设置，通过 GitHub Pull Request 提交至 <code>submissions/</code>。请勿在公开文件中填写 API Key。</p></div></li>
     <li><div><h3>评分审核后上榜</h3><p>维护者使用私有评分流程评测并审核，再更新公开版榜单。当前采用维护者审核流程，提交后不会即时自动评分。</p></div></li>
   </ol>
+  <p class="note">提交需登录 GitHub。外部参评者先 Fork 仓库，将 JSON 上传到自己的 <code>submissions/</code>，再发起 Pull Request。PR 链接即提交回执；校验通过后等待维护者评分审核。</p>
   <div class="commandbar">
     <div class="bar"><span class="codehint">命令较长，可左右滑动</span><button id="copy-command" type="button" aria-live="polite">复制命令</button></div>
-<pre tabindex="0" aria-label="快速开始命令，可左右滑动"><code id="quickstart"><span class="c">git</span> clone https://github.com/SatoSakula/MoveBench.git
+<pre tabindex="0" aria-label="快速开始命令，可左右滑动"><code id="quickstart"><span class="c">git</span> clone https://github.com/Keep-Tech/MoveBench.git
 <span class="c">cd</span> MoveBench
 <span class="c">python3</span> tools/validate.py
 <span class="c">python3</span> tools/run_student.py --model your-model \
-  --base-url https://api.example.com/v1 --output predictions.json</code></pre>
+  --base-url https://api.example.com/v1 --output predictions.json
+<span class="c">python3</span> tools/validate.py --submission predictions.json</code></pre>
   </div>
   <p class="note">运行前在本机配置 STUDENT_API_KEY。脚本支持 Python 3.10+ 和 OpenAI-compatible Chat Completions 接口。</p>
   <div class="cta">
-    <a class="button ghost" href="https://github.com/SatoSakula/MoveBench/blob/main/data/submission_template.json">下载提交模板 ↓</a>
-    <a class="button ghost" href="https://github.com/SatoSakula/MoveBench/blob/main/docs/SUBMISSION.md">完整参评指南 ↗</a>
+    <a class="button" href="https://github.com/Keep-Tech/MoveBench/blob/main/docs/SUBMISSION.md#网页提交无需命令行">提交模型答案 · GitHub PR →</a>
+    <a class="button ghost" href="https://github.com/Keep-Tech/MoveBench/blob/main/data/submission_template.json">下载提交模板 ↓</a>
+    <a class="button ghost" href="https://github.com/Keep-Tech/MoveBench/blob/main/docs/SUBMISSION.md">完整参评指南 ↗</a>
   </div>
 </div></section>
 
@@ -255,7 +258,7 @@ footer .brand .mb{width:24px;height:24px}
       <div class="footer-links">
         <a href="https://keepace.ai/">Keepace.ai ↗</a>
         <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
-        <a href="https://github.com/SatoSakula/MoveBench/issues">反馈问题</a>
+        <a href="https://github.com/Keep-Tech/MoveBench/issues">反馈问题</a>
       </div>
     </div>
     <div class="copyright">© 2026 MoveBench 保留所有权利.</div>
@@ -265,7 +268,7 @@ footer .brand .mb{width:24px;height:24px}
 <script>
 document.getElementById('copy-command').addEventListener('click',async function(){try{await navigator.clipboard.writeText(document.getElementById('quickstart').textContent);this.textContent='已复制';setTimeout(()=>this.textContent='复制命令',2000)}catch{this.textContent='请选中下方命令复制'}});
 
-async function showBoard(){const host=document.getElementById('board');try{const response=await fetch('leaderboard.json',{cache:'no-store'});if(!response.ok)throw Error('unavailable');const board=await response.json();if(board.dataset_version!=='release-1'||!Array.isArray(board.entries))throw Error('invalid');if(!board.entries.length){host.textContent='暂未发布本版本的审核成绩。';const submit=document.createElement('a');submit.href='#participate';submit.textContent='提交首批模型答案 →';host.append(submit);return}host.className='table-scroll';host.textContent='';const table=document.createElement('table');const head=table.createTHead().insertRow();for(const label of ['排名','模型','Overall','PG','DA','QA','证据']){const th=document.createElement('th');th.textContent=label;head.append(th)}const body=table.createTBody();const entries=board.entries.slice().sort((a,b)=>b.overall-a.overall);entries.forEach((entry,i)=>{const row=body.insertRow();const values=[i+1,entry.model_id,entry.overall,entry.domain_macro?.PG,entry.domain_macro?.DA,entry.domain_macro?.QA];values.forEach((value,j)=>{const cell=row.insertCell();cell.textContent=j>=2&&Number.isFinite(value)?value.toFixed(3):String(value??'—')});const cell=row.insertCell();try{const url=new URL(entry.evidence_url);if(url.protocol!=='https:')throw Error('scheme');const a=document.createElement('a');a.href=url.href;a.textContent='逐题证据';a.rel='noopener noreferrer';cell.append(a)}catch{cell.textContent='维护端审核'}});host.append(table)}catch{host.textContent='暂时无法读取榜单。';const link=document.createElement('a');link.href='https://github.com/SatoSakula/MoveBench/blob/main/leaderboard.json';link.textContent='在 GitHub 查看榜单文件';host.append(link)}}showBoard();
+async function showBoard(){const host=document.getElementById('board');try{const response=await fetch('leaderboard.json',{cache:'no-store'});if(!response.ok)throw Error('unavailable');const board=await response.json();if(board.dataset_version!=='release-1'||!Array.isArray(board.entries))throw Error('invalid');if(!board.entries.length){host.textContent='暂未发布本版本的审核成绩。';const submit=document.createElement('a');submit.href='#participate';submit.textContent='提交首批模型答案 →';host.append(submit);return}host.className='table-scroll';host.textContent='';const table=document.createElement('table');const head=table.createTHead().insertRow();for(const label of ['排名','模型','Overall','PG','DA','QA','证据']){const th=document.createElement('th');th.textContent=label;head.append(th)}const body=table.createTBody();const entries=board.entries.slice().sort((a,b)=>b.overall-a.overall);entries.forEach((entry,i)=>{const row=body.insertRow();const values=[i+1,entry.model_id,entry.overall,entry.domain_macro?.PG,entry.domain_macro?.DA,entry.domain_macro?.QA];values.forEach((value,j)=>{const cell=row.insertCell();cell.textContent=j>=2&&Number.isFinite(value)?value.toFixed(3):String(value??'—')});const cell=row.insertCell();try{const url=new URL(entry.evidence_url);if(url.protocol!=='https:')throw Error('scheme');const a=document.createElement('a');a.href=url.href;a.textContent='逐题证据';a.rel='noopener noreferrer';cell.append(a)}catch{cell.textContent='维护端审核'}});host.append(table)}catch{host.textContent='暂时无法读取榜单。';const link=document.createElement('a');link.href='https://github.com/Keep-Tech/MoveBench/blob/main/leaderboard.json';link.textContent='在 GitHub 查看榜单文件';host.append(link)}}showBoard();
 </script>
 </body>
 </html>

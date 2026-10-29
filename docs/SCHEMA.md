@@ -24,3 +24,7 @@ JSON 数组，每题包含 `problem_id`、`problem`、`domain`、`question_forma
 MCQ 的 `model_answer` 建议直接给出选项字母（单选 `A`，多选 `A,C`），便于 exact_match 自动判分。
 
 题目文本、ID 沿用原始题库。公开问题输入仅用于生成答案；OQ 的 rubric 评分在维护端按私有 Judge 流程执行，MCQ 可按公开答案自动判分。
+
+## 提交生成设置
+
+`generation.date` 使用 YYYY-MM-DD；`temperature` 为有限非负数；`max_tokens` 为正整数。MCQ 第一行仅填写有效选项字母，以英文逗号分隔，多选不得重复，单选仅一个字母；理由从第二行起填写。
