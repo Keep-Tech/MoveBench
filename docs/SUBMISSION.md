@@ -1,6 +1,6 @@
 # 提交与评测
 
-当前版本：**80 题（50 OQ + 11 单选 + 19 多选）**。请使用 main 分支的 [questions.json](../data/questions.json) 和 [submission_template.json](../data/submission_template.json)，不要混用旧版 140 题 Release。
+当前版本：**80 题（50 OQ + 11 单选 + 19 多选）**。请使用 main 分支的 [questions.json](../data/questions.json) 和 [submission_template.json](../data/submission_template.json)。
 
 ## 准备与校验
 
