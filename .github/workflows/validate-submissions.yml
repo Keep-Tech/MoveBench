@@ -1,0 +1,29 @@
+name: Validate submissions
+on:
+  pull_request:
+    paths:
+      - 'submissions/**.json'
+      - 'tools/validate.py'
+      - 'tools/validate_pr.py'
+      - 'tests/**'
+      - 'data/**'
+      - '.github/workflows/validate-submissions.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate submitted answer files with trusted base validator
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: python3 tools/validate_pr.py

@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 from api_client import chat, atomic_json
 
@@ -22,12 +23,18 @@ def main():
     generation = {'base_url': args.base_url, 'temperature': args.temperature, 'max_tokens': args.max_tokens}
     submission = {'schema_version': '1.0', 'dataset_version': 'release-1', 'dataset_sha256': digest,
                   'questions_sha256': hashlib.sha256((root / 'questions.json').read_bytes()).hexdigest(),
-                  'model_id': args.model, 'generation': generation, 'predictions': []}
+                  'model_id': args.model, 'generation': {**generation, 'date': datetime.now(timezone.utc).date().isoformat()}, 'predictions': []}
     if args.output.exists():
         old = json.loads(args.output.read_text())
         for field in ('model_id', 'dataset_sha256', 'questions_sha256', 'generation'):
-            if old.get(field) != submission[field]:
+            previous = old.get(field)
+            expected = submission[field]
+            if field == 'generation':
+                previous = {k: v for k, v in (previous or {}).items() if k != 'date'}
+                expected = generation
+            if previous != expected:
                 raise ValueError('Checkpoint configuration mismatch; use a new output file')
+        old['generation'].setdefault('date', submission['generation']['date'])
         submission = old
     done = {x['problem_id'] for x in submission['predictions']}
     key = os.environ['STUDENT_API_KEY']

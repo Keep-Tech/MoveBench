@@ -1,5 +1,6 @@
 """Validate public questions and answer submissions. SPDX-License-Identifier: MIT"""
-import argparse, hashlib, json
+import argparse, hashlib, json, math, re
+from datetime import date
 from pathlib import Path
 DATA = Path(__file__).resolve().parent.parent / 'data'
 
@@ -27,6 +28,17 @@ def validate(submission=None):
         model=submission.get('model_id')
         if not isinstance(model,str) or not model.strip() or len(model)>200:
             raise ValueError('Invalid model ID')
+        generation=submission.get('generation')
+        if not isinstance(generation,dict): raise ValueError('Missing generation metadata')
+        try: date.fromisoformat(generation.get('date',''))
+        except (ValueError,TypeError): raise ValueError('generation.date must be YYYY-MM-DD') from None
+        temperature=generation.get('temperature')
+        if isinstance(temperature,bool) or not isinstance(temperature,(int,float)) or not math.isfinite(temperature) or temperature<0:
+            raise ValueError('generation.temperature must be a finite nonnegative number')
+        maximum=generation.get('max_tokens')
+        if isinstance(maximum,bool) or not isinstance(maximum,int) or maximum<=0:
+            raise ValueError('generation.max_tokens must be a positive integer')
+        by_id={q['problem_id']:q for q in questions}
         rows=submission.get('predictions')
         if not isinstance(rows,list): raise ValueError('predictions must be an array')
         seen=set()
@@ -35,6 +47,16 @@ def validate(submission=None):
             pid,answer=row.get('problem_id'),row.get('model_answer')
             if pid not in ids or pid in seen: raise ValueError('Unknown/duplicate ID')
             if not isinstance(answer,str) or not answer.strip() or len(answer)>40000: raise ValueError('Empty/invalid answer')
+            question=by_id[pid]
+            if question['question_format']=='MCQ':
+                first_line=answer.strip().splitlines()[0].strip().upper()
+                if not re.fullmatch(r'[A-Z](?:\s*,\s*[A-Z])*',first_line):
+                    raise ValueError('MCQ first line must contain option letters only, e.g. A or A,C: '+pid)
+                letters=[x.strip() for x in first_line.split(',')]
+                if len(set(letters))!=len(letters) or not set(letters)<=set(question['problem']['choices']):
+                    raise ValueError('Invalid/duplicate MCQ option: '+pid)
+                if '_SS' in pid and len(letters)!=1:
+                    raise ValueError('Single-select answer must contain one option: '+pid)
             seen.add(pid)
         if seen!=set(ids): raise ValueError('Incomplete answers')
     return len(ids)
