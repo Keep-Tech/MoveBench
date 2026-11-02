@@ -1,14 +1,14 @@
 # MoveBench
 
-中文运动健康教练大模型评测集 · **MoveBench Team x 首都体育学院**
+A Chinese benchmark for evaluating large language models as sports and health coaches · **MoveBench Team × Capital University of Physical Education and Sports**
 
-[论文](https://arxiv.org/abs/2610.26185) · [在线题库与榜单](https://keep-tech.github.io/MoveBench/) · [参评指南](docs/SUBMISSION.md) · [数据格式](docs/SCHEMA.md) · [English](docs/README_EN.md) 
+[Paper](https://arxiv.org/abs/2610.26185) · [Online questions & leaderboard](https://keep-tech.github.io/MoveBench/) · [Submission guide](docs/SUBMISSION.md) · [Data schema](docs/SCHEMA.md)
 
-公开提供 **80 道中文题目**，覆盖个性化课程方案 PG、运动数据解读 DA、专业知识问答 QA 三个场景，含 **50 道开放题（OQ）** 与 **30 道选择题（MCQ）**。
+This release provides **80 Chinese-language questions** across three scenarios: personalized training plan generation (PG), sports data analysis (DA) and professional knowledge QA (QA). It includes **50 open-ended questions (OQ)** and **30 multiple-choice questions (MCQ)**.
 
-## 公开版榜单（Release 1 · 80 题）
+## Leaderboard (Release 1 · 80 questions)
 
-| 排名 | 模型 | Overall | OQ 开放题 (50) | MCQ 选择题 (30) | PG | DA | QA |
+| Rank | Model | Overall | OQ (50) | MCQ (30) | PG | DA | QA |
 |---:|---|---:|---:|---:|---:|---:|---:|
 | 1 | Claude Opus 5.5 | **0.897** | 0.892 | 1.000 (30/30) | 0.860 | 0.927 | 0.947 |
 | 2 | Qwen3.8-Max | **0.886** | 0.880 | 1.000 (30/30) | 0.839 | 0.932 | 0.938 |
@@ -21,69 +21,75 @@
 | 9 | Gemini-4-Argon | **0.838** | 0.830 | 1.000 (30/30) | 0.776 | 0.894 | 0.913 |
 | 10 | MiMo-V2.6-Pro | **0.837** | 0.830 | 1.000 (30/30) | 0.778 | 0.878 | 0.924 |
 
-- 分数为 0–1。各列均按"得分总和 / 满分总和"计算：OQ 每题满分 10 分（三 Judge 加权 rubric 评分），MCQ 每题 1 分（精确匹配）。Overall 汇总全部 80 题（满分 530），因此以开放题为主。
-- PG / DA / QA 为对应领域下全部题目（OQ + MCQ）的得分率。
-- 成绩取自各模型在完整 809 题评测中的作答，仅抽取本次公开的 80 题重新计算，**不等同于论文中的全量成绩**。
-- 本版本已公开 rubric 与标准答案，成绩可能受数据污染影响，仅供参考。
+- Scores range from 0 to 1. Each column is points earned divided by points possible.
+- Open-ended questions are scored against their rubrics by two LLM judges, and the two scores are averaged. An item scores 0 only if both judges flag a safety red-line violation. Points per question vary by domain (PG 17–27, DA 10, QA 8; 619 in total).
+- Multiple-choice questions are worth 1 point each and scored by exact match.
+- Overall covers all 80 questions (649 points), so it is driven mainly by the open-ended questions.
+- PG / DA / QA are the scores on all questions (OQ + MCQ) in that domain.
+- Scores were taken from each model's full 809-question run, keeping only the 80 public questions. **They are not the paper's full-benchmark scores.**
+- Rubrics and reference answers are public in this release, so these results may be affected by data contamination. Treat them as indicative.
 
-## 当前公开范围
+## What's in this release
 
-| 范围 | 数量 |
+| Scope | Count |
 |---|---:|
-| OQ · 开放题（含 rubric 评分细则、参考答案） | 50 |
-| MCQ · 选择题（单选 11 / 多选 19，含标准答案） | 30 |
-| 合计 | **80** |
+| OQ · open-ended (with rubric criteria and reference answers) | 50 |
+| MCQ · multiple-choice (11 single-select / 19 multi-select, with gold answers) | 30 |
+| Total | **80** |
 
-按领域分布：DA 29 / PG 26 / QA 25。开放题共 464 条 rubric 评分细则。
+By domain: DA 29 / PG 26 / QA 25. The open-ended questions carry 464 rubric criteria in total.
 
-- `data/questions.json`：仅题目、ID、领域、题型（OQ 为空选项，MCQ 含选项）；不含参考答案和评分细则，供学生模型作答。
-- `data/benchmark.json` / `data/test.jsonl`：完整记录。OQ 含 rubric 与参考答案，MCQ 含选项与标准答案；供评分、研究与自行复算。
-- `data/submission_template.json`：全部 80 题的答案提交模板。
-- `data/manifest.json`：版本、数量、校验值和数据集标识。
-- `tools/`：学生模型作答与答案格式校验工具。
+- `data/questions.json`: questions only, with IDs, domains and formats (OQ have empty choices; MCQ include choices). No reference answers or rubrics. Use this to generate answers with the model under test.
+- `data/benchmark.json` / `data/test.jsonl`: full records. OQ include rubrics and reference answers; MCQ include choices and gold answers. For scoring, research and re-computing scores yourself.
+- `data/submission_template.json`: answer submission template covering all 80 questions.
+- `data/manifest.json`: version, counts, checksums and dataset identity.
+- `tools/`: tools for generating model answers and validating answer files.
 
-## 题目人群分布
+## User profiles behind the questions
 
-80 道题均基于真实用户画像构建，覆盖不同性别、年龄、体型与身体状况。
+All 80 questions are built from real user profiles covering a range of genders, ages, body types and health conditions.
 
-![MoveBench 80 题人群画像分布](assets/brand/demographics.png)
+![Demographics of the 80 MoveBench questions](assets/brand/demographics.png)
 
-| 维度 | 分布 |
+| Dimension | Distribution |
 |---|---|
-| 性别 | 男 38 · 女 30 · 未明示 12 |
-| 年龄 | 16–58 岁（均值 31.6）；18–29 最多（30 题），其次 30–39（17）、40–49（10）、50–59（6）、<18（4） |
-| 体型 / BMI | 正常 38 · 超重 20 · 偏瘦 9 · 肥胖/大体重 4 · 未明示 9 |
-| 伤病 / 不适 | 提及 32 题（膝、腰、颈椎肩颈等）· 无提及 48 题 |
+| Gender | Male 38 · Female 30 · Not stated 12 |
+| Age | 16–58 (mean 31.6); most common 18–29 (30 questions), then 30–39 (17), 40–49 (10), 50–59 (6), under 18 (4) |
+| Body type / BMI | Normal 38 · Overweight 20 · Underweight 9 · Obese / heavy 4 · Not stated 9 |
+| Injury / discomfort | Mentioned in 32 questions (knee, lower back, neck and shoulders, etc.) · Not mentioned in 48 |
 
-覆盖的人群特征还包括：青少年（<18）与大龄用户（50+）、大体重与减脂人群、增肌人群、久坐上班族、以及带伤/康复期用户。这些画像分布使评测更贴近真实运动健康教练场景的多样性。
+The profiles also cover teenagers (under 18) and older users (50+), heavier users and people trying to lose fat, people building muscle, office workers who sit for long periods, and users who are injured or recovering. This variety keeps the evaluation close to real sports and health coaching scenarios.
 
-## 下载与作答
+## Download and generate answers
 
 ```bash
 git clone https://github.com/Keep-Tech/MoveBench.git
 cd MoveBench
 python3 tools/validate.py
-export STUDENT_API_KEY='在本机设置，不要提交到 GitHub'
+export STUDENT_API_KEY='set this locally; never commit it to GitHub'
 python3 tools/run_student.py --model organization/exact-model-version \
   --base-url https://api.example.com/v1 --output predictions.json
 python3 tools/validate.py --submission predictions.json
 ```
 
-Python 3.10+，公开工具仅依赖标准库。`run_student.py` 对 OQ 发送问题全文、对 MCQ 附带选项并要求输出选项字母。也可使用本地权重或其他 API 自行生成相同格式的答案；题目输入与原 Release 1 保持一致。
+Requires Python 3.10+. The public tools use only the standard library. `run_student.py` sends the full question text for OQ, and for MCQ it appends the choices and asks for option letters. You can also generate answers in the same format with local weights or another API; the question inputs are identical to the original Release 1.
 
-## 提交与上榜
+## Submit and get on the leaderboard
 
-1. 完成全部 80 题，填写精确模型版本、生成设置，并披露是否曾接触本题库、历史参考答案或评分材料。
-2. 通过 PR 将答案提交到 `submissions/<model>-<date>.json`。不要提交 API Key。
-3. 维护者核对完整性，在私有维护端评分并审核，再发布汇总成绩到榜单。完整评分证据私有归档，不公开逐项标准。
+1. Answer all 80 questions. Provide the exact model version and generation settings, and disclose whether the model has been exposed to this question set, earlier reference answers or scoring materials.
+2. Submit your answers in a pull request at `submissions/<model>-<date>.json`. Do not submit API keys.
+3. Maintainers check completeness, score and review the submission privately, then publish aggregate scores to the leaderboard. Full scoring evidence is archived privately; item-level scoring details are not published.
 
-尚不支持提交后即时自动评分。需要 API 代跑时先通过 Issue 联系维护者协调；不要公开粘贴凭据。模型身份由参评者声明。
+Submissions are not scored automatically on arrival. If you need maintainers to run your model through an API, open an Issue first to coordinate; never post credentials publicly. Model identity is as declared by the submitter.
 
-## 适用范围与数据污染
+## Scope and data contamination
 
-本版本公开 rubric 评分细则和参考答案，并公开 MCQ 的标准答案。这意味着：外界可以检查评分标准、自行调用 Judge 复算 OQ、对 MCQ 自动判分，但**公开的评分标准与答案也可能被用于针对性优化或背题，造成数据污染**。因此：
+This release publishes the rubric criteria and reference answers for open-ended questions, and the gold answers for multiple-choice questions. Anyone can inspect the scoring criteria, re-score open-ended answers with their own judge, and score multiple-choice answers automatically. **The published criteria and answers can also be used for targeted optimization or memorization, which contaminates results.** Therefore:
 
-- 公开版成绩仅供参考，不构成从未曝光的隐藏测试。
-- 模型身份、生成设置及是否接触过本数据集由提交者声明，维护者可能要求补充生成记录。
-- 成绩不构成医疗安全或真实训练效果认证。
+- Public-release scores are for reference only. These are not previously unseen held-out questions.
+- Model identity, generation settings and any prior exposure to this dataset are declared by submitters. Maintainers may ask for generation records.
+- Scores do not certify medical safety or real-world training effectiveness.
 
+## License
+
+Datasets, rubrics, reference answers and documentation are licensed under [CC BY 4.0](LICENSE). Please credit MoveBench Team and cite the [paper](https://arxiv.org/abs/2610.26185) (see [CITATION.cff](CITATION.cff)).
