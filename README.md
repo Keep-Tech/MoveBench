@@ -6,6 +6,7 @@ A Chinese benchmark for evaluating large language models as sports and health co
 
 This release provides **80 Chinese-language questions** across three scenarios: personalized training plan generation (PG), sports data analysis (DA) and professional knowledge QA (QA). It includes **50 open-ended questions (OQ)** and **30 multiple-choice questions (MCQ)**.
 
+**If you would like to test your model on the full 809 questions set, please reach out to: benchmarkcontact@keep.com**
 ## Leaderboard (Release 1 · 80 questions)
 
 | Rank | Model | Overall | OQ (50) | MCQ (30) | PG | DA | QA |
@@ -20,14 +21,6 @@ This release provides **80 Chinese-language questions** across three scenarios: 
 | 8 | GPT-6 | **0.848** | 0.842 | 0.967 (29/30) | 0.802 | 0.897 | 0.897 |
 | 9 | Gemini-4-Argon | **0.838** | 0.830 | 1.000 (30/30) | 0.776 | 0.894 | 0.913 |
 | 10 | MiMo-V2.6-Pro | **0.837** | 0.830 | 1.000 (30/30) | 0.778 | 0.878 | 0.924 |
-
-- Scores range from 0 to 1. Each column is points earned divided by points possible.
-- Open-ended questions are scored against their rubrics by two LLM judges, and the two scores are averaged. An item scores 0 only if both judges flag a safety red-line violation. Points per question vary by domain (PG 17–27, DA 10, QA 8; 619 in total).
-- Multiple-choice questions are worth 1 point each and scored by exact match.
-- Overall covers all 80 questions (649 points), so it is driven mainly by the open-ended questions.
-- PG / DA / QA are the scores on all questions (OQ + MCQ) in that domain.
-- Scores were taken from each model's full 809-question run, keeping only the 80 public questions. **They are not the paper's full-benchmark scores.**
-- Rubrics and reference answers are public in this release, so these results may be affected by data contamination. Treat them as indicative.
 
 ## What's in this release
 
@@ -47,7 +40,7 @@ By domain: DA 29 / PG 26 / QA 25. The open-ended questions carry 464 rubric crit
 
 ## User profiles behind the questions
 
-All 80 questions are built from real user profiles covering a range of genders, ages, body types and health conditions.
+All 80 questions are built from real user profiles covering a range of genders, ages, body types and health conditions which is the same as the full 809 questions collection.
 
 ![Demographics of the 80 MoveBench questions](assets/brand/demographics.png)
 
