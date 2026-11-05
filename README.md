@@ -87,6 +87,15 @@ This release publishes the rubric criteria and reference answers for open-ended 
 - Model identity, generation settings and any prior exposure to this dataset are declared by submitters. Maintainers may ask for generation records.
 - Scores do not certify medical safety or real-world training effectiveness.
 
+## Contributors
+
+MoveBench is maintained by the MoveBench Team:
+
+- [Yitong Li (@SatoSakula)](https://github.com/SatoSakula)
+- [@cindyggg](https://github.com/cindyggg)
+- [@dingpan1969-ai](https://github.com/dingpan1969-ai)
+- [Bian Jiang (@BianJiangXD)](https://github.com/BianJiangXD)
+
 ## License
 
 Datasets, rubrics, reference answers and documentation are licensed under [CC BY 4.0](LICENSE). Please credit MoveBench Team and cite the [paper](https://arxiv.org/abs/2610.26185) (see [CITATION.cff](CITATION.cff)).
