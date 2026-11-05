@@ -92,10 +92,11 @@ This release publishes the rubric criteria and reference answers for open-ended 
 MoveBench is maintained by the MoveBench Team:
 
 - [Yitong Li (@SatoSakula)](https://github.com/SatoSakula)
-- [@cindyggg](https://github.com/cindyggg)
-- [@dingpan1969-ai](https://github.com/dingpan1969-ai)
 - [Bian Jiang (@BianJiangXD)](https://github.com/BianJiangXD)
 - [Haven (@Haven-Wang)](https://github.com/Haven-Wang)
+- [@cindyggg](https://github.com/cindyggg)
+- [@dingpan1969-ai](https://github.com/dingpan1969-ai)
+
 
 ## License
 
