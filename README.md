@@ -6,7 +6,11 @@ A Chinese benchmark for evaluating large language models as sports and health co
 
 This release provides **80 Chinese-language questions** across three scenarios: personalized training plan generation (PG), sports data analysis (DA) and professional knowledge QA (QA). It includes **50 open-ended questions (OQ)** and **30 multiple-choice questions (MCQ)**.
 
-**If you would like to test your model on the full 809 questions set, please reach out to: benchmarkcontact@keep.com**
+# Participation
+If you'd like to evaluate your model's capabilities in sports and health-related scenarios using the full MoveBench benchmark of 809 questions, we invite you to participate in our evaluation program.
+Our team of sports science professionals will provide a comprehensive evaluation report, free of charge, offering insights into your model's performance.
+Interested? Contact us at **benchmarkcontact@keep.com**.
+
 ## Leaderboard (Release 1 · 80 questions)
 
 | Rank | Model | Overall | OQ (50) | MCQ (30) | PG | DA | QA |
