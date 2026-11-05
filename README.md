@@ -6,6 +6,11 @@ A Chinese benchmark for evaluating large language models as sports and health co
 
 This release provides **80 Chinese-language questions** across three scenarios: personalized training plan generation (PG), sports data analysis (DA) and professional knowledge QA (QA). It includes **50 open-ended questions (OQ)** and **30 multiple-choice questions (MCQ)**.
 
+# Participation
+If you'd like to evaluate your model's capabilities in sports and health-related scenarios using the full MoveBench benchmark of 809 questions, we invite you to participate in our evaluation program.
+Our team of sports science professionals will provide a comprehensive evaluation report, free of charge, offering insights into your model's performance.
+Interested? Contact us at **benchmarkcontact@keep.com**.
+
 ## Leaderboard (Release 1 · 80 questions)
 
 | Rank | Model | Overall | OQ (50) | MCQ (30) | PG | DA | QA |
@@ -47,7 +52,7 @@ By domain: DA 29 / PG 26 / QA 25. The open-ended questions carry 464 rubric crit
 
 ## User profiles behind the questions
 
-All 80 questions are built from real user profiles covering a range of genders, ages, body types and health conditions.
+All 80 questions are built from real user profiles covering a range of genders, ages, body types and health conditions which is the same as the full 809 questions collection.
 
 ![Demographics of the 80 MoveBench questions](assets/brand/demographics.png)
 
@@ -89,6 +94,17 @@ This release publishes the rubric criteria and reference answers for open-ended 
 - Public-release scores are for reference only. These are not previously unseen held-out questions.
 - Model identity, generation settings and any prior exposure to this dataset are declared by submitters. Maintainers may ask for generation records.
 - Scores do not certify medical safety or real-world training effectiveness.
+
+## Contributors
+
+MoveBench is maintained by the MoveBench Team:
+
+- [Yitong Li (@SatoSakula)](https://github.com/SatoSakula)
+- [Bian Jiang (@BianJiangXD)](https://github.com/BianJiangXD)
+- [Haven (@Haven-Wang)](https://github.com/Haven-Wang)
+- [@cindyggg](https://github.com/cindyggg)
+- [@dingpan1969-ai](https://github.com/dingpan1969-ai)
+
 
 ## License
 
