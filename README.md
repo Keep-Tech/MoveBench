@@ -95,6 +95,7 @@ MoveBench is maintained by the MoveBench Team:
 - [@cindyggg](https://github.com/cindyggg)
 - [@dingpan1969-ai](https://github.com/dingpan1969-ai)
 - [Bian Jiang (@BianJiangXD)](https://github.com/BianJiangXD)
+- [Haven (@Haven-Wang)](https://github.com/Haven-Wang)
 
 ## License
 
