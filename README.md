@@ -28,6 +28,14 @@ Interested? Contact us at **benchmarkcontact@keep.com**.
 | 9 | Gemini-4-Argon | **0.838** | 0.830 | 1.000 (30/30) | 0.776 | 0.894 | 0.913 |
 | 10 | MiMo-V2.6-Pro | **0.837** | 0.830 | 1.000 (30/30) | 0.778 | 0.878 | 0.924 |
 
+- Scores range from 0 to 1. Each column is points earned divided by points possible.
+- Open-ended questions are scored against their rubrics by a three-judge weighted LLM panel. An item that violates a safety red line scores 0. Points per question vary by domain (PG 17–27, DA 10, QA 8; 619 in total).
+- Multiple-choice questions are worth 1 point each and scored by exact match.
+- Overall covers all 80 questions (649 points), so it is driven mainly by the open-ended questions.
+- PG / DA / QA are the scores on all questions (OQ + MCQ) in that domain.
+- Scores were taken from each model's full 809-question run, keeping only the 80 public questions. **They are not the paper's full-benchmark scores.**
+- Rubrics and reference answers are public in this release, so these results may be affected by data contamination. Treat them as indicative.
+
 ## What's in this release
 
 | Scope | Count |
