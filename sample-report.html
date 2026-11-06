@@ -109,7 +109,7 @@ html:not([data-lang="zh"]) [data-l="zh"],html[data-lang="zh"] [data-l="en"]{disp
     <span>Benchmark <b>MoveBench, full 809 questions</b> (499 open-ended · 310 multiple choice)</span>
     <span>Reference models <b>Claude Opus 5.5 · GLM-5.3 · Qwen3.8 Max · MiniMax M3</b></span>
   </div>
-  <p class="note"><b>About this sample:</b> this report is based on evaluation results on the full 809-question MoveBench. A full report also includes question-by-question review of low-scoring answers by sports science experts. The worked examples here use the judges' reasons only, and all of them come from the 80 public questions, so no unreleased items are shown.</p>
+  <p class="note"><b>About this sample:</b> this report is based on evaluation results on the full 809-question MoveBench. A full report also includes question-by-question review of low-scoring answers by sport scientists. The worked examples here use the judges' reasons only, and all of them come from the 80 public questions, so no unreleased items are shown.</p>
 
   <h2>Summary</h2>
   <div class="summary">
@@ -265,12 +265,12 @@ html:not([data-lang="zh"]) [data-l="zh"],html[data-lang="zh"] [data-l="en"]{disp
     <li><strong>Questions:</strong> 809 Chinese sports and health questions across plan generation (PG), data analysis (DA) and knowledge QA (QA): 499 open-ended and 310 multiple choice. 80 of them are public on <a href="https://huggingface.co/datasets/KeepaceAI/MoveBench">Hugging Face</a> and <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a>.</li>
     <li><strong>Scoring:</strong> multiple-choice questions are scored by exact match. Open-ended answers are graded against expert-written, per-question rubrics by a three-judge weighted LLM panel; answers that cross a safety red line lose points or score zero.</li>
     <li><strong>Grouping lost points:</strong> for each rubric criterion we compare GPT-6 with the average of the four reference models, keep criteria where the gap exceeds 30% of the criterion's maximum, and group them by the judges' reasons. Grouping uses keywords in the reasons, and a criterion can fall into more than one group.</li>
-    <li><strong>Full report:</strong> in addition to the analysis above, sports science experts review low-scoring questions one by one, point out problems the judges missed (such as invented exercises or calculation errors), and give post-training suggestions for your model.</li>
+    <li><strong>Full report:</strong> in addition to the analysis above, sport scientists review low-scoring questions one by one, point out problems the judges missed (such as invented exercises or calculation errors), and give post-training suggestions for your model.</li>
   </ul>
 
   <section class="cta">
     <h2>Get a free report for your model</h2>
-    <p>Evaluate your model on the full 809 questions, and our sports science team will send you a report like this one for free, including expert review of individual questions.</p>
+    <p>Evaluate your model on the full 809 questions, and our sport scientists will send you a report like this one for free, including question-by-question review by sport scientists.</p>
     <p class="mail">benchmarkcontact@keep.com</p>
     <p style="margin:0;font-size:14px;color:var(--muted)">Please include your model name, how we can access it (API or weights), and a contact person.</p>
   </section>
@@ -285,7 +285,7 @@ html:not([data-lang="zh"]) [data-l="zh"],html[data-lang="zh"] [data-l="en"]{disp
     <span>评测集 <b>MoveBench 全量 809 题</b>（开放题 499 · 选择题 310）</span>
     <span>参考模型 <b>Claude Opus 5.5 · GLM-5.3 · Qwen3.8 Max · MiniMax M3</b></span>
   </div>
-  <p class="note"><b>关于这份样例：</b>本报告基于 MoveBench 全量 809 题的评测结果。正式报告还包括体育科学专家对低分题的逐题人工审核；样例中的例题分析只使用评委理由，且例题都取自已公开的 80 道题，不涉及未公开题目。</p>
+  <p class="note"><b>关于这份样例：</b>本报告基于 MoveBench 全量 809 题的评测结果。正式报告还包括运动科学家对低分题的逐题人工审核；样例中的例题分析只使用评委理由，且例题都取自已公开的 80 道题，不涉及未公开题目。</p>
 
   <h2>摘要</h2>
   <div class="summary">
@@ -441,12 +441,12 @@ html:not([data-lang="zh"]) [data-l="zh"],html[data-lang="zh"] [data-l="en"]{disp
     <li><strong>题目：</strong>809 道中文运动健康题，覆盖训练计划生成（PG）、运动数据分析（DA）和专业知识问答（QA）三个场景；其中 499 道开放题、310 道选择题。80 道已在 <a href="https://huggingface.co/datasets/KeepaceAI/MoveBench">Hugging Face</a> 和 <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a> 公开。</li>
     <li><strong>评分：</strong>选择题按标准答案精确匹配。开放题由三个 LLM judge 加权评分，按专家逐题编写的评分标准（rubric）打分；触犯安全红线的回答扣分或判零。</li>
     <li><strong>失分归类：</strong>对每个评分项比较 GPT-6 与四个参考模型的平均得分，筛出差距超过该项满分 30% 的评分项，再按评委理由归类。归类基于理由文本的关键词，一项可属多类。</li>
-    <li><strong>正式报告：</strong>在以上分析之外，还会由体育科学专家对低分题逐题人工审核，指出评委没有发现的问题（例如编造的动作、计算错误），并给出针对你的模型的后训练建议。</li>
+    <li><strong>正式报告：</strong>在以上分析之外，还会由运动科学家对低分题逐题人工审核，指出评委没有发现的问题（例如编造的动作、计算错误），并给出针对你的模型的后训练建议。</li>
   </ul>
 
   <section class="cta">
     <h2>免费获取你的模型评测报告</h2>
-    <p>用完整的 809 题评测你的模型，我们的体育科学团队会免费提供这样一份报告，并附专家逐题审核。</p>
+    <p>用完整的 809 题评测你的模型，我们的运动科学家会免费提供这样一份报告，并附运动科学家逐题审核。</p>
     <p class="mail">benchmarkcontact@keep.com</p>
     <p style="margin:0;font-size:14px;color:var(--muted)">邮件里请写明模型名称、调用方式（API 或权重）和联系人。</p>
   </section>

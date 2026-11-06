@@ -10,14 +10,14 @@ This release provides **80 Chinese-language questions** across three scenarios: 
 
 # Free evaluation report
 
-Want to know how your model performs as a sports and health coach? We will evaluate it on the full 809-question MoveBench and send you a professional report, free of charge. Our sports science team reviews the low-scoring answers question by question.
+Want to know how your model performs as a sports and health coach? We will evaluate it on the full 809-question MoveBench and send you a professional report, free of charge. Our sport scientists review the low-scoring answers question by question.
 
 The report covers:
 
 - Scores against leading models, by scenario (plan generation, data analysis, knowledge QA) and by capability layer (safety, expertise, experience)
 - Where the model loses points on open-ended questions, grouped into failure types from the judges' reasons
 - Worked examples that compare your model's answers with the highest-scoring answers
-- Expert review of low-scoring questions, with suggestions for post-training
+- Review of low-scoring questions by sport scientists, with suggestions for post-training
 
 See the [sample report for GPT-6](https://keep-tech.github.io/MoveBench/sample-report.html), in English and Chinese.
 
