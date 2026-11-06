@@ -19,7 +19,7 @@ The report covers:
 - Worked examples that compare your model's answers with the highest-scoring answers
 - Expert review of low-scoring questions, with suggestions for post-training
 
-See the [sample report for GPT-6](https://keep-tech.github.io/MoveBench/sample-report.html) (in Chinese).
+See the [sample report for GPT-6](https://keep-tech.github.io/MoveBench/sample-report.html), in English and Chinese.
 
 To get your report, email **benchmarkcontact@keep.com** with your model name, how we can access it (API or weights), and a contact person.
 

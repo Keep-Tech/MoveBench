@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>GPT-6 样例评测报告 · MoveBench</title>
-<meta name="description" content="MoveBench 免费评测报告样例：GPT-6 在 809 道运动健康题上的得分、失分归因和例题分析。">
+<title>GPT-6 Sample Report · MoveBench</title>
+<meta name="description" content="A sample MoveBench evaluation report: GPT-6 on 809 sports and health questions, with scores, failure analysis and worked examples.">
 <meta name="theme-color" content="#070708">
 <link rel="icon" type="image/png" href="assets/brand/favicon.png">
 <style>
@@ -83,23 +83,213 @@ tr.me td:first-child{color:var(--gpt);font-weight:650}
 .cta .mail{font:600 18px var(--f-mono);color:var(--accent);user-select:all}
 footer{margin-top:40px;font-size:13px;color:var(--faint)}
 @media (max-width:560px){.row{grid-template-columns:1fr 88px}.row .lab{grid-column:1/-1;margin-bottom:-4px}}
+.topbar{max-width:860px;margin:0 auto;padding-block:22px 0;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;justify-content:space-between;align-items:center;gap:12px}
+.topbar + .wrap{padding-top:18px}
+.lang{display:inline-flex;border:1px solid var(--line2);border-radius:999px;padding:3px;gap:2px}
+.lang button{font:600 12.5px var(--f-body);color:var(--muted);background:none;border:0;border-radius:999px;padding:5px 12px;cursor:pointer;min-height:32px}
+.lang button[aria-pressed="true"]{background:var(--panel2);color:var(--ink)}
+.lang button:focus-visible{outline:2px solid var(--g1);outline-offset:2px}
+html:not([data-lang="zh"]) [data-l="zh"],html[data-lang="zh"] [data-l="en"]{display:none}
 </style>
 </head>
 <body>
 <div class="bar-top"></div>
-<main class="wrap">
-  <div class="eyebrow">MoveBench · 评测报告样例</div>
+<div class="topbar">
+  <div class="eyebrow" data-l="en">MoveBench · Sample report</div>
+  <div class="eyebrow" data-l="zh">MoveBench · 评测报告样例</div>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" id="lang-en" data-set="en" aria-pressed="true">EN</button>
+    <button type="button" id="lang-zh" data-set="zh" aria-pressed="false">中文</button>
+  </div>
+</div>
+<main class="wrap" data-l="en" lang="en">
+  <h1>GPT-6 Sports and Health Evaluation Report</h1>
+  <p class="lede">This is a real sample of a MoveBench evaluation report. Every model we evaluate gets a report with the same structure: score comparison, failure analysis, worked examples and directions for improvement.</p>
+  <div class="meta">
+    <span>Benchmark <b>MoveBench, full 809 questions</b> (499 open-ended · 310 multiple choice)</span>
+    <span>Reference models <b>Claude Opus 5.5 · GLM-5.3 · Qwen3.8 Max · MiniMax M3</b></span>
+  </div>
+  <p class="note"><b>About this sample:</b> this report is based on evaluation results on the full 809-question MoveBench. A full report also includes question-by-question review of low-scoring answers by sports science experts. The worked examples here use the judges' reasons only, and all of them come from the 80 public questions, so no unreleased items are shown.</p>
+
+  <h2>Summary</h2>
+  <div class="summary">
+    <p><strong>GPT-6 scores 88.0 overall.</strong> It scores 84.6 on open-ended questions and 93.5 on multiple choice; the four reference models score 86.8–89.5 and 96.1–98.4. The gap is small, but it shows up consistently on both question types.</p>
+    <p><strong>The problem is not knowledge or safety. GPT-6 is too cautious.</strong> It has no safety red-line deductions at all (the reference models have 4–15), and it answers every single-choice question correctly. But it often avoids a clear judgement: in 76 of the criteria where it lost the most points, the judges say it played down or contradicted the conclusion the question called for, such as "no need to change your cadence" or "one session can't prove overtraining". The same pattern shows in multiple choice: all 20 of its multi-select errors are missing options, never wrong or extra ones.</p>
+    <p><strong>On open-ended questions, the gap is in knowledge QA and data analysis.</strong> Against the reference average, GPT-6 is 5.6 percentage points lower on QA, 4.2 lower on DA, and only 0.8 lower on plan generation (PG). The most common cause of lost points is missing quantitative reasoning (38%): it does not calculate BMI, stride length or heart-rate zones, and gives only qualitative descriptions.</p>
+    <p><strong>The lost points are spread out.</strong> GPT-6 scores below Claude Opus 5.5 on 357 of 499 open-ended questions and is the lowest of the five models on 181. But only 6 of its answers score below 50%, about the same as the reference models (4–6). This is a systematic gap in answer style, and fixing individual questions will not close it.</p>
+  </div>
+
+  <h2>Scores</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Model</th><th>Overall</th><th>Open-ended</th><th>Multiple choice</th><th>Multi-select</th><th>Safety</th><th>Expertise</th><th>Experience</th></tr></thead>
+    <tbody>
+      <tr><td>GLM-5.3</td><td>92.2</td><td>88.9</td><td>97.4</td><td>95.9</td><td>90.5</td><td>91.3</td><td>90.7</td></tr>
+      <tr><td>Claude Opus 5.5</td><td>92.1</td><td>89.5</td><td>96.5</td><td>94.4</td><td>91.6</td><td>91.9</td><td>91.5</td></tr>
+      <tr><td>Qwen3.8 Max</td><td>91.2</td><td>86.8</td><td>98.4</td><td>97.5</td><td>91.5</td><td>88.0</td><td>90.0</td></tr>
+      <tr><td>MiniMax M3</td><td>90.7</td><td>87.4</td><td>96.1</td><td>93.9</td><td>92.6</td><td>90.9</td><td>87.9</td></tr>
+      <tr class="me"><td>GPT-6</td><td>88.0</td><td class="lo">84.6</td><td class="lo">93.5</td><td class="lo">89.8</td><td class="lo">88.9</td><td class="lo">86.9</td><td class="lo">87.3</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">Scores on the full 809 MoveBench questions, out of 100. One GPT-6 multiple-choice request failed, so it is scored on 808 questions. Safety, Expertise and Experience are capability-layer scores aggregated from the rubric dimensions.</p>
+
+  <div class="fig">
+    <h4>Scores by scenario (open-ended + multiple choice)</h4>
+    <div class="row"><span class="lab">Plan generation (PG)</span><span class="track"><i class="g" style="width:52.7%"></i></span><span class="v">85.8</span></div>
+    <div class="row"><span class="lab">Reference range</span><span class="track"><i style="left:46%;width:14.3%"></i></span><span class="v">83.8–88.1</span></div>
+    <div class="row"><span class="lab">Data analysis (DA)</span><span class="track"><i class="g" style="width:61.7%"></i></span><span class="v">88.5</span></div>
+    <div class="row"><span class="lab">Reference range</span><span class="track"><i style="left:72.7%;width:5.6%"></i></span><span class="v">91.8–93.5</span></div>
+    <div class="row"><span class="lab">Knowledge QA (QA)</span><span class="track"><i class="g" style="width:66%"></i></span><span class="v">89.8</span></div>
+    <div class="row"><span class="lab">Reference range</span><span class="track"><i style="left:78.7%;width:7%"></i></span><span class="v">93.6–95.7</span></div>
+    <div class="legend"><span style="--c:var(--gpt)">GPT-6</span><span style="--c:var(--ref)">Lowest to highest of the four reference models</span><span>Axis 70–100</span></div>
+  </div>
+  <p>On plan generation GPT-6 is already within the reference range. On data analysis and knowledge QA it is below every reference model.</p>
+
+  <h2>Where GPT-6 loses points on open-ended questions</h2>
+  <p>Comparing GPT-6 with the average of the four reference models, criterion by criterion, these are the criteria where it loses the most:</p>
+  <div class="fig">
+    <h4>Criteria with the largest total shortfall (vs. reference average, raw rubric points)</h4>
+    <div class="row"><span class="lab">PG · Course information completeness</span><span class="track"><i class="c3" style="width:100%"></i></span><span class="v">−54.9</span></div>
+    <div class="row"><span class="lab">DA · Metric insight and explanation</span><span class="track"><i class="c3" style="width:46.6%"></i></span><span class="v">−25.6</span></div>
+    <div class="row"><span class="lab">PG · Sound, balanced design</span><span class="track"><i class="c3" style="width:35.5%"></i></span><span class="v">−19.5</span></div>
+    <div class="row"><span class="lab">QA · Extending health knowledge</span><span class="track"><i class="c3" style="width:32.1%"></i></span><span class="v">−17.6</span></div>
+    <div class="row"><span class="lab">DA · Multi-metric synthesis</span><span class="track"><i class="c3" style="width:31.1%"></i></span><span class="v">−17.1</span></div>
+    <div class="row"><span class="lab">QA · Terminology and units</span><span class="track"><i class="c3" style="width:29.9%"></i></span><span class="v">−16.4</span></div>
+    <div class="row"><span class="lab">QA · Scientific accuracy</span><span class="track"><i class="c3" style="width:29.5%"></i></span><span class="v">−16.2</span></div>
+  </div>
+  <p>In plan generation, the biggest loss is course information completeness: plans often lack required fields such as a course name, the K-level difficulty label or an estimated calorie burn. These are easy to fix, and GPT-6 gains 5.3 points over the reference models on user fit, so PG as a whole is only 0.8 points behind.</p>
+
+  <p>We then picked out 302 criteria with a large gap (GPT-6 below the reference average by more than 30% of that criterion's maximum) and grouped them by the judges' reasons. A criterion can fall into more than one group:</p>
+  <div class="fig">
+    <h4>Why GPT-6 lost points on large-gap criteria (302 in total)</h4>
+    <div class="row"><span class="lab">Missing quantitative reasoning</span><span class="track"><i class="c1" style="width:38.1%"></i></span><span class="v">115 · 38%</span></div>
+    <div class="row"><span class="lab">Played down or contradicted a key judgement</span><span class="track"><i class="c4" style="width:25.2%"></i></span><span class="v">76 · 25%</span></div>
+    <div class="row"><span class="lab">Metrics not analysed together</span><span class="track"><i class="c2" style="width:13.2%"></i></span><span class="v">40 · 13%</span></div>
+    <div class="row"><span class="lab">Incomplete plan structure</span><span class="track"><i class="c3" style="width:11.6%"></i></span><span class="v">35 · 12%</span></div>
+    <div class="row"><span class="lab">Did not follow the user's request</span><span class="track"><i class="c5" style="width:5.6%"></i></span><span class="v">17 · 6%</span></div>
+  </div>
+  <ul>
+    <li><strong>Missing quantitative reasoning (115):</strong> it does not calculate BMI, stride length or percentage of maximum heart rate, and does not cite quantitative facts such as landing impact of about 2–3 times body weight or the roughly 10% weekly mileage increase. It gives qualitative conclusions such as "on the high side" or "be careful".</li>
+    <li><strong>Played down or contradicted a key judgement (76):</strong> the judges expected a clear risk call, and GPT-6 gave the opposite or a vague conclusion. 36 of these are about cadence or stride, typically "no need to chase 180 steps per minute" or "this alone doesn't show an injury risk".</li>
+    <li><strong>Metrics not analysed together (40):</strong> weight, cadence, heart rate and injury history are discussed one at a time, without a combined judgement such as "overweight + low cadence + long stride = high knee and ankle impact".</li>
+    <li><strong>Incomplete plan structure (35):</strong> plans lack the full "warm-up → main set → stretch" structure; most often the stretch is missing.</li>
+    <li><strong>Did not follow the user's request (17):</strong> for safety reasons it changed the kind of training the user asked for, for example turning "run-walk intervals" into "slow walk + brisk walk", or "break a light sweat to burn fat" into no-sweat relaxation, without offering a plan that still met the original goal.</li>
+  </ul>
+
+  <h2>Root cause</h2>
+  <p>The evidence points to one style problem: <strong>GPT-6 tends not to conclude when the evidence is incomplete</strong>, while the rubric for a sports coach expects a clear judgement based on the user's data, with quantitative, actionable advice.</p>
+  <ul>
+    <li><strong>Knowledge and safety are fine.</strong> It gets all 112 single-choice questions right, has no red-line deductions, and its safety warnings and see-a-doctor signals are thorough.</li>
+    <li><strong>The caution is systematic and crosses question types.</strong> On open-ended questions it avoids firm conclusions; on multi-select questions it only picks the options it is sure of, and all 20 errors are missing options. The reference models make 5–12 multi-select errors, of both kinds.</li>
+    <li><strong>The caution is scientifically sound but doesn't reach the user.</strong> "180 steps per minute is not a universal standard" and "220 minus age is only a rough estimate" are both true. The high-scoring answers state the limitation first, then use this user's height, weight and pace to calculate concrete numbers and reach a clear conclusion. GPT-6 often stops at the first step.</li>
+    <li><strong>Answers are short.</strong> Its median open-ended answer is about 1,700 Chinese characters, 45% shorter than Claude Opus 5.5 and also shorter than GLM-5.3. The data checks, multi-metric synthesis and complete plan fields that the rubric rewards need room.</li>
+  </ul>
+
+  <h2>Worked examples</h2>
+  <p>All three questions come from the 80 public questions; you can see the originals in the <a href="https://huggingface.co/datasets/KeepaceAI/MoveBench">MoveBench dataset</a>. The questions and answers are in Chinese; quotes below are translated.</p>
+
+  <article class="ex">
+    <div class="tag">Data analysis · DA_OQ241</div>
+    <h3>Are this overweight runner's heart rate and cadence safe?</h3>
+    <div class="score">GPT-6 <b>53</b> · reference models 72–89 · top score MiniMax M3 89</div>
+    <p class="q">A 38-year-old woman, 160 cm and 68 kg (BMI 26.5), runs 3 km in 22:30 at 7:30 per km, cadence 145, average heart rate 148 and maximum 168, no RPE recorded. Is the intensity safe, does her cadence and pace carry injury risk, and what should she change next time?</p>
+    <dl>
+      <dt>GPT-6's answer</dt>
+      <dd>In the heart-rate part it calculates the percentage of maximum heart rate and calls the intensity high. But its cadence section is titled:
+        <blockquote>Cadence 145: not high, but this alone doesn't show an injury risk</blockquote>
+        It suggests only "trying" 150–152 and says this is "not a target you must reach".</dd>
+      <dt>Why the judges took points off</dt>
+      <dd><ul>
+        <li>It did not use pace and cadence to calculate stride length (about 0.92 m per step), or point out that for a 160 cm beginner this is classic overstriding.</li>
+        <li>It did not connect overweight, low cadence and high heart rate; instead it played down the injury risk of low cadence and gave no clear safety warning.</li>
+        <li>It did not point out the missing RPE record.</li>
+      </ul></dd>
+      <dt>What a high-scoring answer does (GLM-5.3, 86)</dt>
+      <dd>It starts with a data check (calories match the pace, so the record is credible). It places the average heart rate at 80–90% of HRmax in a zone table, calculates about 0.92 m per step, longer than her estimated leg length, and calls it overstriding. Using landing impact of 2–3 times body weight, it rates the risk "moderate". Then it gives a concrete plan: slow down to 8:00–8:30 per km, keep heart rate at 125–140, and raise cadence gradually to 155–160.</dd>
+    </dl>
+  </article>
+
+  <article class="ex">
+    <div class="tag">Knowledge QA · QA_OQ156</div>
+    <h3>A 16-year-old hits 190 bpm while running. Is that normal?</h3>
+    <div class="score">GPT-6 <b>71</b> · reference models 82–100 · top score Claude Opus 5.5 100</div>
+    <p class="q">A 16-year-old boy, 175 cm and 78 kg, runs 5 km outdoors with an average heart rate of 175 and a maximum of 190. Is this heart rate normal, and could it harm his development or his heart?</p>
+    <dl>
+      <dt>GPT-6's answer</dt>
+      <dd>The conclusion is right, and its red flags and see-a-doctor advice are complete. But it explicitly refuses to estimate:
+        <blockquote>Don't use "220 minus age" to draw your own safety line.</blockquote>
+        It never gives an estimated maximum heart rate or intensity zones, and does not use his height and weight.</dd>
+      <dt>Why the judges took points off</dt>
+      <dd><ul>
+        <li>No estimate of maximum heart rate (about 204), no calculation that 175 and 190 are about 86% and 93% of it, and no intensity zones.</li>
+        <li>It did not use 175 cm and 78 kg to note a BMI of about 25.5 and a heavier build, or remind him to protect his knees and ankles.</li>
+        <li>It lacks standard terms such as maximum heart rate, heart-rate zones and aerobic base.</li>
+      </ul></dd>
+      <dt>What a high-scoring answer does (Claude Opus 5.5, 100)</dt>
+      <dd>It estimates maximum heart rate with two formulas side by side (220 − age and Tanaka) and notes individual variation of ±10–15. A table converts 175 and 190 into percentages of maximum and intensity zones. It then uses the BMI of about 25.5 to explain that teenagers' growth plates are still open and a heavier body puts more impact on the knees and ankles, and finishes with an easy-run heart-rate range and the rule of raising weekly mileage by no more than 10%.</dd>
+    </dl>
+  </article>
+
+  <article class="ex">
+    <div class="tag">Plan generation · PG_OQ200</div>
+    <h3>Knee not healed yet, wants a faster first step in badminton</h3>
+    <div class="score">GPT-6 <b>61</b> · reference models 63–81 · top score Claude Opus 5.5 81</div>
+    <p class="q">A heavier-set woman plays casual badminton on weekends but is slow off the mark. Her knee injury has not healed and she can only train in a small space in her bedroom. She wants a 6–10 minute, K1-level, equipment-free session that is safe for her knee.</p>
+    <dl>
+      <dt>GPT-6's answer</dt>
+      <dd>Its safety screening is strict: it opens with conditions for whether she should train at all, with no jumping or squatting. But almost the whole plan is ankle pumps and glute squeezes lying on her back or side, and it says in the text:
+        <blockquote>This is not badminton push-off training.</blockquote>
+        It ends with "relax and check in", with no stretching.</dd>
+      <dt>Why the judges took points off</dt>
+      <dd><ul>
+        <li>No "warm-up → main set → static stretch" structure; the ending is not a stretch.</li>
+        <li>Too conservative: it rules out knee-friendly, hip-dominant standards such as glute bridges and clamshells, and drifts away from the goal of better leg drive and a faster first step.</li>
+        <li>The course name doesn't say "no jumping / knee-friendly", there is no calorie estimate, and the layout is not split into basic info, warm-up, main set and stretch.</li>
+      </ul></dd>
+      <dt>What a high-scoring answer does (Claude Opus 5.5, 81)</dt>
+      <dd>It also says up front that nothing is perfectly safe with an injured knee, and adds traffic-light rules for when to stop. It then breaks first-step speed into four parts that can be trained with little knee load: glute drive, glute medius stability, calf spring and weight shift. Over a 2-minute warm-up, 5-minute main set and 1.5-minute stretch it uses glute bridges, side-lying leg raises, wall-supported calf raises, hip hinges and weight shifts from the ready stance, each with knee-protection cues.</dd>
+    </dl>
+  </article>
+
+  <h2>Capability gaps and what to improve</h2>
+  <ol class="gaps">
+    <li><strong>Quantitative reasoning:</strong> when given height, weight, pace, cadence or heart rate, calculate BMI, stride length and percentage of maximum heart rate first, then conclude. This can be a fixed step in SFT data.</li>
+    <li><strong>Balance caution with judgement:</strong> keep the note that estimates have error, but always give a clear call from the user's data (safe / at risk / see a doctor). Preference data should penalise answers that only list limitations and never conclude.</li>
+    <li><strong>Multi-metric synthesis:</strong> reason about weight, gait, heart rate and injury history together to reach an overall risk rating, rather than reading each metric separately.</li>
+    <li><strong>Plan structure and required fields:</strong> always output warm-up → main set → stretch, plus course name, difficulty level, duration and estimated calories. These are the easiest points to win back.</li>
+    <li><strong>Meet the user's goal within safety limits:</strong> when a plan has to be scaled down, keep the training type and goal the user asked for instead of switching to a different kind of training.</li>
+    <li><strong>Multi-select:</strong> check for the tendency to under-select, and if needed judge every option explicitly in the reasoning instead of keeping only the safest ones.</li>
+  </ol>
+
+  <h2>Method</h2>
+  <ul>
+    <li><strong>Questions:</strong> 809 Chinese sports and health questions across plan generation (PG), data analysis (DA) and knowledge QA (QA): 499 open-ended and 310 multiple choice. 80 of them are public on <a href="https://huggingface.co/datasets/KeepaceAI/MoveBench">Hugging Face</a> and <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a>.</li>
+    <li><strong>Scoring:</strong> multiple-choice questions are scored by exact match. Open-ended answers are graded against expert-written, per-question rubrics by a three-judge weighted LLM panel; answers that cross a safety red line lose points or score zero.</li>
+    <li><strong>Grouping lost points:</strong> for each rubric criterion we compare GPT-6 with the average of the four reference models, keep criteria where the gap exceeds 30% of the criterion's maximum, and group them by the judges' reasons. Grouping uses keywords in the reasons, and a criterion can fall into more than one group.</li>
+    <li><strong>Full report:</strong> in addition to the analysis above, sports science experts review low-scoring questions one by one, point out problems the judges missed (such as invented exercises or calculation errors), and give post-training suggestions for your model.</li>
+  </ul>
+
+  <section class="cta">
+    <h2>Get a free report for your model</h2>
+    <p>Evaluate your model on the full 809 questions, and our sports science team will send you a report like this one for free, including expert review of individual questions.</p>
+    <p class="mail">benchmarkcontact@keep.com</p>
+    <p style="margin:0;font-size:14px;color:var(--muted)">Please include your model name, how we can access it (API or weights), and a contact person.</p>
+  </section>
+
+  <footer>MoveBench Team × Capital University of Physical Education and Sports · <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a> · <a href="https://arxiv.org/abs/2610.26185">Paper</a></footer>
+</main>
+
+<main class="wrap" data-l="zh" lang="zh-CN">
   <h1>GPT-6 运动健康能力评测报告</h1>
   <p class="lede">这是一份 MoveBench 评测报告的真实样例。我们为参评模型提供同样结构的报告：得分对比、失分归因、例题分析和改进方向。</p>
   <div class="meta">
     <span>评测集 <b>MoveBench 全量 809 题</b>（开放题 499 · 选择题 310）</span>
     <span>参考模型 <b>Claude Opus 5.5 · GLM-5.3 · Qwen3.8 Max · MiniMax M3</b></span>
   </div>
-  <p class="note"><b>关于这份样例：</b>本报告基于公开榜单使用的同一批评测结果。正式报告还包括体育科学专家对低分题的逐题人工审核；样例中的例题分析只使用评委理由，且例题都取自已公开的 80 道题，不涉及未公开题目。</p>
+  <p class="note"><b>关于这份样例：</b>本报告基于 MoveBench 全量 809 题的评测结果。正式报告还包括体育科学专家对低分题的逐题人工审核；样例中的例题分析只使用评委理由，且例题都取自已公开的 80 道题，不涉及未公开题目。</p>
 
   <h2>摘要</h2>
   <div class="summary">
-    <p><strong>GPT-6 总分 88.0，在 25 个模型中排第 15。</strong>开放题 84.6，选择题 93.5；四个参考模型分别为 86.8–89.5 和 96.1–98.4。差距不大，但在开放题和选择题上都稳定存在。</p>
+    <p><strong>GPT-6 总分 88.0。</strong>开放题 84.6，选择题 93.5；四个参考模型分别为 86.8–89.5 和 96.1–98.4。差距不大，但在开放题和选择题上都稳定存在。</p>
     <p><strong>问题不在知识，也不在安全，而在过于保守。</strong>GPT-6 没有一道题触发安全红线扣分（参考模型 4–15 道），单选题全对。但它经常回避给出明确判断：在 76 个大幅失分的评分项里，评委指出它弱化或否定了题目期望的关键结论，比如“步频不必刻意调整”“单次记录不能证明过度训练”。选择题上同样如此：它错的 20 道多选题全部是少选，没有一道多选或错选。</p>
     <p><strong>开放题的差距集中在专业问答（QA）和数据分析（DA）。</strong>和参考模型平均相比，GPT-6 在 QA 低 5.6 个百分点，DA 低 4.2 个，训练计划（PG）只低 0.8 个。缺少量化推导是最常见的失分原因（38%）：不算 BMI、步幅、心率区间，只给定性描述。</p>
     <p><strong>失分是分散的。</strong>GPT-6 在 357/499 道开放题上低于 Claude Opus 5.5，在 181 道上是五个模型中最低；但得分低于 50% 的题只有 6 道，和参考模型（4–6 道）相当。这是回答风格层面的系统差距，靠修补个别题目补不齐。</p>
@@ -107,16 +297,16 @@ footer{margin-top:40px;font-size:13px;color:var(--faint)}
 
   <h2>各模型得分</h2>
   <div class="tbl"><table>
-    <thead><tr><th>模型</th><th>榜单排名</th><th>总分</th><th>开放题</th><th>选择题</th><th>多选题</th><th>安全性</th><th>专业性</th><th>体验</th></tr></thead>
+    <thead><tr><th>模型</th><th>总分</th><th>开放题</th><th>选择题</th><th>多选题</th><th>安全性</th><th>专业性</th><th>体验</th></tr></thead>
     <tbody>
-      <tr><td>GLM-5.3</td><td>2</td><td>92.2</td><td>88.9</td><td>97.4</td><td>95.9</td><td>90.5</td><td>91.3</td><td>90.7</td></tr>
-      <tr><td>Claude Opus 5.5</td><td>3</td><td>92.1</td><td>89.5</td><td>96.5</td><td>94.4</td><td>91.6</td><td>91.9</td><td>91.5</td></tr>
-      <tr><td>Qwen3.8 Max</td><td>5</td><td>91.2</td><td>86.8</td><td>98.4</td><td>97.5</td><td>91.5</td><td>88.0</td><td>90.0</td></tr>
-      <tr><td>MiniMax M3</td><td>9</td><td>90.7</td><td>87.4</td><td>96.1</td><td>93.9</td><td>92.6</td><td>90.9</td><td>87.9</td></tr>
-      <tr class="me"><td>GPT-6</td><td>15</td><td>88.0</td><td class="lo">84.6</td><td class="lo">93.5</td><td class="lo">89.8</td><td class="lo">88.9</td><td class="lo">86.9</td><td class="lo">87.3</td></tr>
+      <tr><td>GLM-5.3</td><td>92.2</td><td>88.9</td><td>97.4</td><td>95.9</td><td>90.5</td><td>91.3</td><td>90.7</td></tr>
+      <tr><td>Claude Opus 5.5</td><td>92.1</td><td>89.5</td><td>96.5</td><td>94.4</td><td>91.6</td><td>91.9</td><td>91.5</td></tr>
+      <tr><td>Qwen3.8 Max</td><td>91.2</td><td>86.8</td><td>98.4</td><td>97.5</td><td>91.5</td><td>88.0</td><td>90.0</td></tr>
+      <tr><td>MiniMax M3</td><td>90.7</td><td>87.4</td><td>96.1</td><td>93.9</td><td>92.6</td><td>90.9</td><td>87.9</td></tr>
+      <tr class="me"><td>GPT-6</td><td>88.0</td><td class="lo">84.6</td><td class="lo">93.5</td><td class="lo">89.8</td><td class="lo">88.9</td><td class="lo">86.9</td><td class="lo">87.3</td></tr>
     </tbody>
   </table></div>
-  <p class="cap">分数来自 <a href="https://huggingface.co/spaces/KeepaceAI/MoveBench-Leaderboard">MoveBench 公开榜单</a>（25 个模型）。GPT-6 有 1 道选择题请求失败，按 808 题计分。安全性、专业性、体验是按评分维度汇总的能力层得分。</p>
+  <p class="cap">分数为 MoveBench 全量 809 题得分（百分制）。GPT-6 有 1 道选择题请求失败，按 808 题计分。安全性、专业性、体验是按评分维度汇总的能力层得分。</p>
 
   <div class="fig">
     <h4>场景得分（开放题 + 选择题）</h4>
@@ -261,7 +451,23 @@ footer{margin-top:40px;font-size:13px;color:var(--faint)}
     <p style="margin:0;font-size:14px;color:var(--muted)">邮件里请写明模型名称、调用方式（API 或权重）和联系人。</p>
   </section>
 
-  <footer>MoveBench Team × 首都体育学院 · <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a> · <a href="https://huggingface.co/spaces/KeepaceAI/MoveBench-Leaderboard">榜单</a> · <a href="https://arxiv.org/abs/2610.26185">论文</a></footer>
+  <footer>MoveBench Team × 首都体育学院 · <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a> · <a href="https://arxiv.org/abs/2610.26185">论文</a></footer>
 </main>
+<script>
+(function(){
+  var root=document.documentElement;
+  function set(l){
+    root.setAttribute('data-lang',l);root.lang=l==='zh'?'zh-CN':'en';
+    document.title=l==='zh'?'GPT-6 样例评测报告 · MoveBench':'GPT-6 Sample Report · MoveBench';
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});
+    try{localStorage.setItem('mb-lang',l)}catch(e){}
+  }
+  var l='en';
+  if(location.hash==='#zh'||location.hash==='#en')l=location.hash.slice(1);
+  else{try{l=localStorage.getItem('mb-lang')||'en'}catch(e){}}
+  set(l==='zh'?'zh':'en');
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
+})();
+</script>
 </body>
 </html>
