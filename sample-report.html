@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GPT-6 样例评测报告 · MoveBench</title>
+<meta name="description" content="MoveBench 免费评测报告样例：GPT-6 在 809 道运动健康题上的得分、失分归因和例题分析。">
+<meta name="theme-color" content="#070708">
+<link rel="icon" type="image/png" href="assets/brand/favicon.png">
+<style>
+/* Layout: a single reading column (report), with full-width score table and bar figures. Dark brand look matching the MoveBench site. */
+:root{
+  color-scheme:dark;
+  --bg:#070708;--panel:#111116;--panel2:#16161d;--line:#26262f;--line2:#33333f;
+  --ink:#f4f5f7;--muted:#a3a4ae;--faint:#6d6e78;
+  --g1:#5fe39a;--g2:#c7e24b;--g3:#f6a43a;--g4:#f45b8a;--g5:#e85cc8;
+  --accent:#8ff0b0;--gpt:#f6a43a;--ref:#4a4b57;--good:#5fe39a;--bad:#f45b8a;
+  --f-body:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  --f-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.8 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:4px}
+a:focus-visible{outline:2px solid var(--g1);outline-offset:3px;border-radius:3px}
+.wrap{max-width:860px;margin:0 auto;padding-block:40px 72px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.bar-top{height:4px;background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g5))}
+.eyebrow{font:500 12.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(28px,5vw,40px);line-height:1.2;margin:10px 0 12px;letter-spacing:-.5px;text-wrap:balance}
+h2{font-size:23px;line-height:1.35;margin:56px 0 14px;padding-top:20px;border-top:1px solid var(--line);text-wrap:balance}
+h3{font-size:18px;margin:32px 0 8px;line-height:1.45}
+p{margin:0 0 14px}
+.lede{color:var(--muted);font-size:16.5px;max-width:64ch}
+.meta{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13.5px;color:var(--muted);margin-top:12px}
+.meta b{color:var(--ink);font-weight:600}
+.note{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;font-size:14.5px;color:var(--muted);margin:22px 0 0}
+.note b{color:var(--ink)}
+ul{margin:0 0 14px;padding-left:1.25em}
+li{margin:4px 0}
+li::marker{color:var(--faint)}
+strong{color:#fff;font-weight:650}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.summary{display:grid;gap:14px;margin-top:8px}
+.summary p{margin:0;padding-left:16px;border-left:2px solid var(--line2)}
+.tbl{overflow-x:auto;margin:10px 0 8px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+thead th{font-weight:600;color:var(--muted);font-size:12.5px;letter-spacing:.03em;background:var(--panel)}
+tbody tr:last-child td{border-bottom:0}
+tr.me td{background:rgba(246,164,58,.08)}
+tr.me td:first-child{color:var(--gpt);font-weight:650}
+.cap{font-size:13px;color:var(--faint);margin:6px 0 18px}
+.lo{color:var(--bad)}.hi{color:var(--good)}
+/* bar figures */
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 18px 12px;margin:12px 0 8px}
+.fig h4{margin:0 0 12px;font-size:14px;font-weight:600;color:var(--muted)}
+.row{display:grid;grid-template-columns:minmax(120px,190px) 1fr 92px;gap:10px;align-items:center;margin:9px 0;font-size:14px}
+.row .lab{min-width:0}
+.track{height:12px;background:var(--panel2);border-radius:6px;position:relative;overflow:hidden}
+.track i{position:absolute;inset:0 auto 0 0;border-radius:6px;background:var(--ref)}
+.track i.g{background:var(--gpt)}
+.track i.c1{background:var(--g1)}.track i.c2{background:var(--g2)}.track i.c3{background:var(--g3)}.track i.c4{background:var(--g4)}.track i.c5{background:var(--g5)}
+.row .v{text-align:right;font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);margin-top:6px;flex-wrap:wrap}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+/* example cards */
+.ex{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:18px 0}
+.ex h3{margin:0 0 6px}
+.ex .tag{font:500 12px var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.ex .score{font:500 13px var(--f-mono);color:var(--muted);margin-bottom:12px}
+.ex .score b{color:var(--gpt)}
+.ex .q{font-size:14.5px;color:var(--muted);background:var(--panel2);border-radius:8px;padding:10px 14px;margin:0 0 14px}
+.ex dl{margin:0;display:grid;gap:12px}
+.ex dt{font-size:12.5px;font-weight:600;color:var(--faint);letter-spacing:.05em}
+.ex dd{margin:2px 0 0}
+.ex blockquote{margin:6px 0;padding:2px 0 2px 12px;border-left:2px solid var(--gpt);color:var(--ink);font-size:15px}
+.ex ul{margin:4px 0 0}
+.gaps{counter-reset:g;list-style:none;padding:0}
+.gaps li{counter-increment:g;padding:12px 0 12px 44px;position:relative;border-bottom:1px solid var(--line);margin:0}
+.gaps li::before{content:counter(g);position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:50%;background:var(--panel2);border:1px solid var(--line2);display:grid;place-items:center;font:600 13px var(--f-mono);color:var(--muted)}
+.cta{margin-top:56px;background:linear-gradient(135deg,rgba(95,227,154,.12),rgba(232,92,200,.10));border:1px solid var(--line2);border-radius:16px;padding:26px 24px}
+.cta h2{border:0;margin:0 0 10px;padding:0}
+.cta .mail{font:600 18px var(--f-mono);color:var(--accent);user-select:all}
+footer{margin-top:40px;font-size:13px;color:var(--faint)}
+@media (max-width:560px){.row{grid-template-columns:1fr 88px}.row .lab{grid-column:1/-1;margin-bottom:-4px}}
+</style>
+</head>
+<body>
+<div class="bar-top"></div>
+<main class="wrap">
+  <div class="eyebrow">MoveBench · 评测报告样例</div>
+  <h1>GPT-6 运动健康能力评测报告</h1>
+  <p class="lede">这是一份 MoveBench 评测报告的真实样例。我们为参评模型提供同样结构的报告：得分对比、失分归因、例题分析和改进方向。</p>
+  <div class="meta">
+    <span>评测集 <b>MoveBench 全量 809 题</b>（开放题 499 · 选择题 310）</span>
+    <span>参考模型 <b>Claude Opus 5.5 · GLM-5.3 · Qwen3.8 Max · MiniMax M3</b></span>
+  </div>
+  <p class="note"><b>关于这份样例：</b>本报告基于公开榜单使用的同一批评测结果。正式报告还包括体育科学专家对低分题的逐题人工审核；样例中的例题分析只使用评委理由，且例题都取自已公开的 80 道题，不涉及未公开题目。</p>
+
+  <h2>摘要</h2>
+  <div class="summary">
+    <p><strong>GPT-6 总分 88.0，在 25 个模型中排第 15。</strong>开放题 84.6，选择题 93.5；四个参考模型分别为 86.8–89.5 和 96.1–98.4。差距不大，但在开放题和选择题上都稳定存在。</p>
+    <p><strong>问题不在知识，也不在安全，而在过于保守。</strong>GPT-6 没有一道题触发安全红线扣分（参考模型 4–15 道），单选题全对。但它经常回避给出明确判断：在 76 个大幅失分的评分项里，评委指出它弱化或否定了题目期望的关键结论，比如“步频不必刻意调整”“单次记录不能证明过度训练”。选择题上同样如此：它错的 20 道多选题全部是少选，没有一道多选或错选。</p>
+    <p><strong>开放题的差距集中在专业问答（QA）和数据分析（DA）。</strong>和参考模型平均相比，GPT-6 在 QA 低 5.6 个百分点，DA 低 4.2 个，训练计划（PG）只低 0.8 个。缺少量化推导是最常见的失分原因（38%）：不算 BMI、步幅、心率区间，只给定性描述。</p>
+    <p><strong>失分是分散的。</strong>GPT-6 在 357/499 道开放题上低于 Claude Opus 5.5，在 181 道上是五个模型中最低；但得分低于 50% 的题只有 6 道，和参考模型（4–6 道）相当。这是回答风格层面的系统差距，靠修补个别题目补不齐。</p>
+  </div>
+
+  <h2>各模型得分</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>模型</th><th>榜单排名</th><th>总分</th><th>开放题</th><th>选择题</th><th>多选题</th><th>安全性</th><th>专业性</th><th>体验</th></tr></thead>
+    <tbody>
+      <tr><td>GLM-5.3</td><td>2</td><td>92.2</td><td>88.9</td><td>97.4</td><td>95.9</td><td>90.5</td><td>91.3</td><td>90.7</td></tr>
+      <tr><td>Claude Opus 5.5</td><td>3</td><td>92.1</td><td>89.5</td><td>96.5</td><td>94.4</td><td>91.6</td><td>91.9</td><td>91.5</td></tr>
+      <tr><td>Qwen3.8 Max</td><td>5</td><td>91.2</td><td>86.8</td><td>98.4</td><td>97.5</td><td>91.5</td><td>88.0</td><td>90.0</td></tr>
+      <tr><td>MiniMax M3</td><td>9</td><td>90.7</td><td>87.4</td><td>96.1</td><td>93.9</td><td>92.6</td><td>90.9</td><td>87.9</td></tr>
+      <tr class="me"><td>GPT-6</td><td>15</td><td>88.0</td><td class="lo">84.6</td><td class="lo">93.5</td><td class="lo">89.8</td><td class="lo">88.9</td><td class="lo">86.9</td><td class="lo">87.3</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">分数来自 <a href="https://huggingface.co/spaces/KeepaceAI/MoveBench-Leaderboard">MoveBench 公开榜单</a>（25 个模型）。GPT-6 有 1 道选择题请求失败，按 808 题计分。安全性、专业性、体验是按评分维度汇总的能力层得分。</p>
+
+  <div class="fig">
+    <h4>场景得分（开放题 + 选择题）</h4>
+    <div class="row"><span class="lab">训练计划 PG</span><span class="track"><i class="g" style="width:52.7%"></i></span><span class="v">85.8</span></div>
+    <div class="row"><span class="lab">参考模型范围</span><span class="track"><i style="left:46%;width:14.3%"></i></span><span class="v">83.8–88.1</span></div>
+    <div class="row"><span class="lab">数据分析 DA</span><span class="track"><i class="g" style="width:61.7%"></i></span><span class="v">88.5</span></div>
+    <div class="row"><span class="lab">参考模型范围</span><span class="track"><i style="left:72.7%;width:5.6%"></i></span><span class="v">91.8–93.5</span></div>
+    <div class="row"><span class="lab">专业问答 QA</span><span class="track"><i class="g" style="width:66%"></i></span><span class="v">89.8</span></div>
+    <div class="row"><span class="lab">参考模型范围</span><span class="track"><i style="left:78.7%;width:7%"></i></span><span class="v">93.6–95.7</span></div>
+    <div class="legend"><span style="--c:var(--gpt)">GPT-6</span><span style="--c:var(--ref)">四个参考模型的最低到最高</span><span>横轴 70–100</span></div>
+  </div>
+  <p>训练计划上 GPT-6 已处在参考模型区间内；数据分析和专业问答两个场景则低于所有参考模型。</p>
+
+  <h2>开放题失分分析</h2>
+  <p>按评分项把 GPT-6 与四个参考模型的平均分逐项对比，失分最多的评分项是：</p>
+  <div class="fig">
+    <h4>累计少得分最多的评分项（相对参考模型平均，评分项原始分）</h4>
+    <div class="row"><span class="lab">PG · 课程信息完备性</span><span class="track"><i class="c3" style="width:100%"></i></span><span class="v">−54.9</span></div>
+    <div class="row"><span class="lab">DA · 指标洞察与解释</span><span class="track"><i class="c3" style="width:46.6%"></i></span><span class="v">−25.6</span></div>
+    <div class="row"><span class="lab">PG · 设计逻辑科学均衡</span><span class="track"><i class="c3" style="width:35.5%"></i></span><span class="v">−19.5</span></div>
+    <div class="row"><span class="lab">QA · 健康知识延展性</span><span class="track"><i class="c3" style="width:32.1%"></i></span><span class="v">−17.6</span></div>
+    <div class="row"><span class="lab">DA · 多指标综合分析</span><span class="track"><i class="c3" style="width:31.1%"></i></span><span class="v">−17.1</span></div>
+    <div class="row"><span class="lab">QA · 术语与单位规范性</span><span class="track"><i class="c3" style="width:29.9%"></i></span><span class="v">−16.4</span></div>
+    <div class="row"><span class="lab">QA · 科学事实正确性</span><span class="track"><i class="c3" style="width:29.5%"></i></span><span class="v">−16.2</span></div>
+  </div>
+  <p>训练计划里失分最多的是“课程信息完备性”：方案常缺少课程名称、K 级难度标识或预估热量这类必填字段。这类问题容易修，而且 GPT-6 在“用户适配度”上反超参考模型 5.3 分，所以 PG 整体只落后 0.8 个百分点。</p>
+
+  <p>我们进一步筛出 302 个大幅失分的评分项（GPT-6 比参考模型平均低出该项满分的 30% 以上），按评委理由归类。一项可能同时属于多类：</p>
+  <div class="fig">
+    <h4>大幅失分评分项的原因（共 302 项）</h4>
+    <div class="row"><span class="lab">缺少量化推导</span><span class="track"><i class="c1" style="width:38.1%"></i></span><span class="v">115 · 38%</span></div>
+    <div class="row"><span class="lab">弱化或否定关键判断</span><span class="track"><i class="c4" style="width:25.2%"></i></span><span class="v">76 · 25%</span></div>
+    <div class="row"><span class="lab">多个指标未串联分析</span><span class="track"><i class="c2" style="width:13.2%"></i></span><span class="v">40 · 13%</span></div>
+    <div class="row"><span class="lab">训练计划结构不完整</span><span class="track"><i class="c3" style="width:11.6%"></i></span><span class="v">35 · 12%</span></div>
+    <div class="row"><span class="lab">未按用户要求执行</span><span class="track"><i class="c5" style="width:5.6%"></i></span><span class="v">17 · 6%</span></div>
+  </div>
+  <ul>
+    <li><strong>缺少量化推导（115 项）：</strong>不计算 BMI、步幅、最大心率占比，不引用落地冲击约为体重 2–3 倍、周跑量增幅约 10% 这类量化依据，只给“偏高”“需注意”之类的定性结论。</li>
+    <li><strong>弱化或否定关键判断（76 项）：</strong>评委期望明确指出风险，GPT-6 却给出相反或模糊的结论。其中 36 项与步频、步幅有关，典型说法是“不必刻意追求 180 步频”“不能据此认定受伤风险”。</li>
+    <li><strong>多个指标未串联（40 项）：</strong>体重、步频、心率、伤病史分别讨论，没有合在一起得出综合判断，例如“超重 + 低步频 + 大步幅 = 膝踝冲击风险高”。</li>
+    <li><strong>训练计划结构不完整（35 项）：</strong>缺少“热身 → 主训 → 拉伸”的完整结构，最常见的是没有拉伸段。</li>
+    <li><strong>未按用户要求执行（17 项）：</strong>出于安全考虑擅自改了用户要的训练形式，比如把“走跑结合”降级为“慢走 + 快走”，或把“微出汗燃脂”改成不出汗的放松活动，却没有给出满足原需求的方案。</li>
+  </ul>
+
+  <h2>根本原因</h2>
+  <p>证据指向同一个风格问题：<strong>GPT-6 倾向于“证据不足就不下结论”</strong>，而运动教练场景的评分标准要求结合用户数据给出明确判断和可执行的量化建议。</p>
+  <ul>
+    <li><strong>知识和安全都没有问题。</strong>单选题 112/112 全对，零红线扣分，安全提示和就医信号也写得完整。</li>
+    <li><strong>保守是系统性的，横跨题型。</strong>开放题里它回避明确结论；多选题里它只选有把握的选项，20 道错题全是少选。参考模型的多选错误只有 5–12 道，且少选、多选都有。</li>
+    <li><strong>这种谨慎在学术上有依据，但没有落到用户身上。</strong>比如“180 步频不是统一标准”“220−年龄只是粗略估计”本身是对的。高分回答的做法是先说明估算的局限，再结合这个用户的身高、体重和配速算出具体数字，给出明确结论。GPT-6 往往停在第一步。</li>
+    <li><strong>回答偏短。</strong>开放题回答长度的中位数约 1,700 字，比 Claude Opus 5.5 短 45%，也短于 GLM-5.3。评分标准奖励的数据校验、多指标综合和完整方案字段，需要篇幅来覆盖。</li>
+  </ul>
+
+  <h2>例题分析</h2>
+  <p>以下三道题都来自已公开的 80 题，可以在 <a href="https://huggingface.co/datasets/KeepaceAI/MoveBench">MoveBench 数据集</a>中查看原题。</p>
+
+  <article class="ex">
+    <div class="tag">数据分析 · DA_OQ241</div>
+    <h3>超重跑者的心率和步频是否安全？</h3>
+    <div class="score">GPT-6 <b>53</b> · 参考模型 72–89 · 最高分 MiniMax M3 89</div>
+    <p class="q">38 岁女性，160 cm、68 kg（BMI 26.5），3 公里用时 22 分 30 秒，配速 7′30″/km，步频 145，平均心率 148、最高 168，未记录 RPE。问强度是否安全、步频配速是否有受伤风险、下次怎么调整。</p>
+    <dl>
+      <dt>GPT-6 的回答</dt>
+      <dd>心率部分算出了最大心率占比，判断强度偏高。但步频部分的标题是：
+        <blockquote>步频145：不算高，但不能据此认定容易受伤</blockquote>
+        建议只把步频“试调”到 150–152，并说明“并非必须达到的目标”。</dd>
+      <dt>评委扣分理由</dt>
+      <dd><ul>
+        <li>没有用配速和步频算出步幅（约 0.92 米），也没有指出对 160 cm 的初跑者这是典型的跨大步。</li>
+        <li>没有把超重、低步频、高心率串联起来，反而淡化了低步频的受伤风险，没有给出明确的安全预警。</li>
+        <li>没有指出用户缺少 RPE 记录。</li>
+      </ul></dd>
+      <dt>高分回答怎么做（GLM-5.3，86 分）</dt>
+      <dd>先做数据校验（热量与配速吻合，记录可信）；用心率区间表标出平均心率落在 80–90% HRmax；算出每步约 0.92 米、超过估算腿长，判定为跨大步，并结合落地冲击约为体重 2–3 倍给出“中等风险”评级；最后给出具体方案：配速放慢到 8′00″–8′30″、心率控制在 125–140、步频逐步提到 155–160。</dd>
+    </dl>
+  </article>
+
+  <article class="ex">
+    <div class="tag">专业问答 · QA_OQ156</div>
+    <h3>16 岁跑步心率 190，正常吗？</h3>
+    <div class="score">GPT-6 <b>71</b> · 参考模型 82–100 · 最高分 Claude Opus 5.5 100</div>
+    <p class="q">16 岁男生，175 cm、78 kg，户外跑 5 公里，平均心率 175、最高 190。问这个心率是否正常，会不会影响发育或心脏。</p>
+    <dl>
+      <dt>GPT-6 的回答</dt>
+      <dd>结论方向正确，红旗信号和就医建议也很完整。但它明确拒绝做估算：
+        <blockquote>不要用“220－年龄”给自己划安全线。</blockquote>
+        全文没有给出最大心率估算和强度区间，也没有结合用户的身高体重分析。</dd>
+      <dt>评委扣分理由</dt>
+      <dd><ul>
+        <li>没有估算最大心率（约 204），没有算出 175 和 190 分别约占 86% 和 93%，没有标注对应的强度区间。</li>
+        <li>没有结合 175 cm、78 kg 指出 BMI 约 25.5、体型偏重，也没有提示膝踝关节保护。</li>
+        <li>缺少最大心率、心率区间、有氧基础等规范术语。</li>
+      </ul></dd>
+      <dt>高分回答怎么做（Claude Opus 5.5，100 分）</dt>
+      <dd>用两个公式（220−年龄、Tanaka）并列估算最大心率，同时注明个体差异可达 ±10–15；再用表格把 175 和 190 换算成最大心率占比和强度区间。之后结合 BMI 约 25.5 提示青少年骨骺未闭合、体重偏大时膝踝承受的冲击，最后给出轻松跑心率范围和每周跑量增幅不超过 10% 的原则。</dd>
+    </dl>
+  </article>
+
+  <article class="ex">
+    <div class="tag">训练计划 · PG_OQ200</div>
+    <h3>膝伤未愈，想练羽毛球启动速度</h3>
+    <div class="score">GPT-6 <b>61</b> · 参考模型 63–81 · 最高分 Claude Opus 5.5 81</div>
+    <p class="q">偏胖女生，周末打羽毛球但启动慢，膝伤未愈，只能在卧室小块空地练。要一个 6–10 分钟、K1 级、无器械、对膝盖安全的训练。</p>
+    <dl>
+      <dt>GPT-6 的回答</dt>
+      <dd>安全把关很严：开头先列出能不能练的前提，全程不跳不蹲。但方案几乎全部是仰卧、侧卧的踝泵和收臀，并在正文中写明：
+        <blockquote>不是羽毛球蹬地启动训练</blockquote>
+        结尾是“放松与复查”，没有拉伸。</dd>
+      <dt>评委扣分理由</dt>
+      <dd><ul>
+        <li>没有形成“热身 → 主训 → 静态拉伸”的结构，结尾不是拉伸。</li>
+        <li>过度保守，排除了臀桥、蚌式等对膝盖友好的标准髋主导动作，偏离了“改善下肢发力和启动速度”的目标。</li>
+        <li>课程名称没有体现“无跳跃 / 护膝”，缺少预估热量；没有按基础信息、热身、主训、拉伸分块排版。</li>
+      </ul></dd>
+      <dt>高分回答怎么做（Claude Opus 5.5，81 分）</dt>
+      <dd>同样先讲清“膝伤时没有绝对安全”，并给出红绿灯停练规则；然后把启动速度拆成臀部发力、臀中肌稳定、小腿弹性和重心转移四个可以低膝负荷训练的部分，按热身 2 分钟、主训 5 分钟、拉伸 1.5 分钟安排臀桥、侧卧抬腿、扶墙提踵、髋铰链和准备姿势重心转移等动作，每个动作都写了膝盖保护要点。</dd>
+    </dl>
+  </article>
+
+  <h2>能力缺口与改进方向</h2>
+  <ol class="gaps">
+    <li><strong>量化推导：</strong>遇到身高、体重、配速、步频、心率等数据时，先算出 BMI、步幅、最大心率占比等中间量，再下结论。可以作为 SFT 数据中的固定步骤。</li>
+    <li><strong>在谨慎和判断之间取得平衡：</strong>保留“估算有误差”的说明，但必须结合用户数据给出明确判断（安全 / 有风险 / 需就医）。偏好数据里应惩罚“只讲局限、不给结论”的回答。</li>
+    <li><strong>多指标综合：</strong>把体重、步态、心率、伤病史放在一起推理，得出综合风险评级，而不是逐项解读。</li>
+    <li><strong>训练计划的结构和必填字段：</strong>固定输出“热身 → 主训 → 拉伸”三段，以及课程名称、难度等级、时长、预估热量等字段。这是最容易补上的失分。</li>
+    <li><strong>安全约束下仍满足用户目标：</strong>需要降级时，在安全范围内保留用户想要的训练形式和目标，不要直接改成另一种训练。</li>
+    <li><strong>多选题：</strong>评估少选倾向，必要时在推理中逐项判断每个选项，而不是只保留最有把握的。</li>
+  </ol>
+
+  <h2>评测方法</h2>
+  <ul>
+    <li><strong>题目：</strong>809 道中文运动健康题，覆盖训练计划生成（PG）、运动数据分析（DA）和专业知识问答（QA）三个场景；其中 499 道开放题、310 道选择题。80 道已在 <a href="https://huggingface.co/datasets/KeepaceAI/MoveBench">Hugging Face</a> 和 <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a> 公开。</li>
+    <li><strong>评分：</strong>选择题按标准答案精确匹配。开放题由三个 LLM judge 加权评分，按专家逐题编写的评分标准（rubric）打分；触犯安全红线的回答扣分或判零。</li>
+    <li><strong>失分归类：</strong>对每个评分项比较 GPT-6 与四个参考模型的平均得分，筛出差距超过该项满分 30% 的评分项，再按评委理由归类。归类基于理由文本的关键词，一项可属多类。</li>
+    <li><strong>正式报告：</strong>在以上分析之外，还会由体育科学专家对低分题逐题人工审核，指出评委没有发现的问题（例如编造的动作、计算错误），并给出针对你的模型的后训练建议。</li>
+  </ul>
+
+  <section class="cta">
+    <h2>免费获取你的模型评测报告</h2>
+    <p>用完整的 809 题评测你的模型，我们的体育科学团队会免费提供这样一份报告，并附专家逐题审核。</p>
+    <p class="mail">benchmarkcontact@keep.com</p>
+    <p style="margin:0;font-size:14px;color:var(--muted)">邮件里请写明模型名称、调用方式（API 或权重）和联系人。</p>
+  </section>
+
+  <footer>MoveBench Team × 首都体育学院 · <a href="https://github.com/Keep-Tech/MoveBench">GitHub</a> · <a href="https://huggingface.co/spaces/KeepaceAI/MoveBench-Leaderboard">榜单</a> · <a href="https://arxiv.org/abs/2610.26185">论文</a></footer>
+</main>
+</body>
+</html>

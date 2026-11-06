@@ -8,10 +8,20 @@ A Chinese benchmark for evaluating large language models as sports and health co
 
 This release provides **80 Chinese-language questions** across three scenarios: personalized training plan generation (PG), sports data analysis (DA) and professional knowledge QA (QA). It includes **50 open-ended questions (OQ)** and **30 multiple-choice questions (MCQ)**.
 
-# Participation
-If you'd like to evaluate your model's capabilities in sports and health-related scenarios using the full MoveBench benchmark of 809 questions, we invite you to participate in our evaluation program.
-Our team of sports science professionals will provide a comprehensive evaluation report, free of charge, offering insights into your model's performance.
-Interested? Contact us at **benchmarkcontact@keep.com**.
+# Free evaluation report
+
+Want to know how your model performs as a sports and health coach? We will evaluate it on the full 809-question MoveBench and send you a professional report, free of charge. Our sports science team reviews the low-scoring answers question by question.
+
+The report covers:
+
+- Scores against leading models, by scenario (plan generation, data analysis, knowledge QA) and by capability layer (safety, expertise, experience)
+- Where the model loses points on open-ended questions, grouped into failure types from the judges' reasons
+- Worked examples that compare your model's answers with the highest-scoring answers
+- Expert review of low-scoring questions, with suggestions for post-training
+
+See the [sample report for GPT-6](https://keep-tech.github.io/MoveBench/sample-report.html) (in Chinese).
+
+To get your report, email **benchmarkcontact@keep.com** with your model name, how we can access it (API or weights), and a contact person.
 
 ## Leaderboard (Release 1 · 80 questions)
 
