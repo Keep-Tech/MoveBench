@@ -4,7 +4,7 @@ A Chinese benchmark for evaluating large language models as sports and health co
 
 [![HF downloads](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Fdatasets%2FKeepaceAI%2FMoveBench%3Fexpand%255B%255D%3DdownloadsAllTime%26expand%255B%255D%3Dlikes&query=%24.downloadsAllTime&label=HF%20downloads&logo=huggingface&color=5fe39a)](https://huggingface.co/datasets/KeepaceAI/MoveBench) [![HF likes](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fhuggingface.co%2Fapi%2Fdatasets%2FKeepaceAI%2FMoveBench%3Fexpand%255B%255D%3DdownloadsAllTime%26expand%255B%255D%3Dlikes&query=%24.likes&label=HF%20likes&logo=huggingface&color=f6a43a)](https://huggingface.co/datasets/KeepaceAI/MoveBench) [![GitHub stars](https://img.shields.io/github/stars/Keep-Tech/MoveBench?style=flat&logo=github&label=stars&color=e85cc8)](https://github.com/Keep-Tech/MoveBench/stargazers)
 
-[Paper](https://arxiv.org/abs/2610.26185) · [Online questions & leaderboard](https://keep-tech.github.io/MoveBench/) · [Submission guide](docs/SUBMISSION.md) · [Data schema](docs/SCHEMA.md)
+[Paper](https://arxiv.org/abs/2610.26185) · [Online questions & leaderboard](https://keep-tech.github.io/MoveBench/) · [Submission guide](docs/SUBMISSION_EN.md) · [中文参评指南](docs/SUBMISSION.md) · [Data schema](docs/SCHEMA.md)
 
 This release provides **80 Chinese-language questions** across three scenarios: personalized training plan generation (PG), sports data analysis (DA) and professional knowledge QA (QA). It includes **50 open-ended questions (OQ)** and **30 multiple-choice questions (MCQ)**.
 
