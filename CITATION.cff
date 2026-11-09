@@ -6,6 +6,6 @@ authors:
   - name: "KeepaceAI Team"
 version: "release-1"
 license: CC-BY-4.0
-repository-code: "https://github.com/SatoSakula/MoveBench"
-url: "https://github.com/SatoSakula/MoveBench"
+repository-code: "https://github.com/Keep-Tech/MoveBench"
+url: "https://github.com/Keep-Tech/MoveBench"
 abstract: "80 Chinese evaluation questions only: 50 open-ended questions, 11 single-select questions, and 19 multi-select questions. This is a public subset of the 809-question paper benchmark."

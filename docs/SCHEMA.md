@@ -28,3 +28,35 @@ MCQ 的 `model_answer` 建议直接给出选项字母（单选 `A`，多选 `A,C
 ## 提交生成设置
 
 `generation.date` 使用 YYYY-MM-DD；`temperature` 为有限非负数；`max_tokens` 为正整数。MCQ 第一行仅填写有效选项字母，以英文逗号分隔，多选不得重复，单选仅一个字母；理由从第二行起填写。
+
+## 覆盖范围 / Coverage
+
+| 场景 / Domain | 开放题 / OQ | 选择题 / MCQ | 合计 / Total |
+|---|---:|---:|---:|
+| PG | 17 | 9 | 26 |
+| DA | 15 | 14 | 29 |
+| QA | 18 | 7 | 25 |
+| 合计 / Total | 50 | 30 | 80 |
+
+以上为当前公开版，不代表完整 809 题的分布。完整记录中 50 道开放题有 464 条评分细则；29 道开放题的参考答案非空，其余为空。公开材料曾包含评分标准与答案，本版本不是未曝光测试集。
+
+## 示例：从题目到提交 / Example workflow
+
+读取 `data/questions.json`：`problem_id` 用于对应答案，`domain` 标识场景，`question_format` 区分 `OQ` 与 `MCQ`。当 `problem.context` 与 `problem.question` 不同且非空时应都提供；相同时仅提供一次。MCQ 还需提供 `problem.choices`。
+
+将模型生成的文本写入提交模板中对应题目的 `model_answer`；例如：
+
+```json
+{
+  "problem_id": "DA_OQ262",
+  "model_answer": "示例回答：此处填写模型对该题的完整回答。"
+}
+```
+
+上面仅为单条格式示意，不是参考答案，不能单独作为完整提交。提交须使用模板包含全部 80 个 ID、模型与生成参数。MCQ 单选如 `A`，多选如 `A,C`，可在下一行附理由。运行 `python3 tools/validate.py --submission predictions.json` 校验；通过仅表示结构合格，不代表完成评测。
+
+HF 数据集提供仅含题目的表格形式：`questions_test.jsonl` 的 `choices` 是 `{label,text}` 列表；GitHub 的 `questions.json` 使用选项字母到文本的映射。GitHub 的完整 `benchmark.json` 和 `test.jsonl` 当前还包含 rubric、参考答案和正确选项。
+
+## 数据构建与局限 / Construction and limitations
+
+公开版从 809 题研究集选取 80 题；公开材料描述题目基于运动健康用户画像构建，覆盖训练方案、运动数据和知识问答。当前公开材料尚未完整说明 80 题抽样标准、具体标注与去标识化流程，详细信息以论文和后续维护文档为准。题目为中文、仅 80 题，不保证覆盖全部人群和运动健康场景；评测分数不能视为医疗安全或实际训练效果认证。
